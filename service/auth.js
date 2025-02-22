@@ -34,26 +34,26 @@ module.exports.createToken = (user) => {
   });
 };
 
-module.exports.googleVerify = async(token) => {
+module.exports.googleVerify = async (token) => {
   const client = new OAuth2Client(CLIENT_ID);
   try {
     const ticket = await client.verifyIdToken({
-        idToken: token,
-        audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
+      idToken: token,
+      audience: CLIENT_ID,  // Specify the CLIENT_ID of the app that accesses the backend
     });
     const payload = ticket.getPayload();
     // const userid = payload['sub'];
-    //console.log(payload)
+    //// console.log(payload)
     return payload
   } catch (error) {
-      //console.log(error)
+    //// console.log(error)
   }
 };
 
 module.exports.cookieConfiguration = () => {
-  if(DEVELOPMENT === true){
+  if (DEVELOPMENT === true) {
     return { httpOnly: true, expiry, expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000) }
   } else {
-    return { httpOnly: true, sameSite: 'none', secure: true, expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)}
+    return { httpOnly: true, sameSite: 'none', secure: true, expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000) }
   }
 }

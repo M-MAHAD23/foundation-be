@@ -51,7 +51,7 @@ const createBookmarkQuest = async (req, res) => {
 };
 const deleteBookmarkQuest = async (req, res) => {
   try {
-    console.log(req.body.uuid)
+    // console.log(req.body.uuid)
     const questions = await BookmarkQuests.findOne({
       questForeignKey: req.body.questForeignKey,
       // uuid: req.cookies.uuid,
@@ -92,7 +92,7 @@ const getAllBookmarkQuests = async (req, res) => {
       // uuid: req.cookies.uuid,
       uuid: req.body.uuid,
     });
-    // //console.log(Questions);
+    // //// console.log(Questions);
     res.status(200).json(Questions);
   } catch (err) {
     res.status(500).send(err);

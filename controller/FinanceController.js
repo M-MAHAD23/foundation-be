@@ -53,7 +53,7 @@ const base = PAYPAL_URL;
 //       });
 //     }
 //   } catch (error) {
-//     console.error(error);
+//     // console.error(error);
 //     res.status(500).json({ message: `Something went wrong, Internal Server Error: ${error.message}` });
 //   }
 // };
@@ -153,7 +153,7 @@ const base = PAYPAL_URL;
 //       throw new Error(`Provider: ${providerName} is not supported.`);
 //     }
 //   } catch (error) {
-//     console.error(error);
+//     // console.error(error);
 //     res.status(500).json({ message: `Something went wrong, Internal Server Error: ${error.message}` });
 //   }
 // };
@@ -284,7 +284,7 @@ const spay = async (req, res) => {
       )} FDX coins are transferd to your account please check your balance.`,
     });
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).send(`Internal Server Error: ${err.message}`);
   }
 };
@@ -309,7 +309,7 @@ const generateAccessToken = async () => {
     const data = await response.json();
     return data.access_token;
   } catch (error) {
-    console.error("Failed to generate Access Token:", error);
+    // console.error("Failed to generate Access Token:", error);
   }
 };
 
@@ -348,7 +348,7 @@ const ppayToken = async (req, res) => {
     const { jsonResponse, httpStatusCode } = await generateClientToken();
     res.status(httpStatusCode).json(jsonResponse);
   } catch (error) {
-    console.error("Failed to generate client token:", error);
+    // console.error("Failed to generate client token:", error);
     res.status(500).send({ error: "Failed to generate client token." });
   }
 };
@@ -403,7 +403,7 @@ const order = async (req, res) => {
     const { jsonResponse, httpStatusCode } = await createOrder(amount);
     res.status(httpStatusCode).json(jsonResponse);
   } catch (error) {
-    console.error("Failed to create order:", error);
+    // console.error("Failed to create order:", error);
     res.status(500).json({ error: "Failed to create order." });
   }
 };
@@ -447,7 +447,7 @@ const captureOrderCall = async (req, res) => {
     const { jsonResponse, httpStatusCode } = await captureOrder(orderID);
     res.status(httpStatusCode).json(jsonResponse);
   } catch (error) {
-    console.error("Failed to create order:", error);
+    // console.error("Failed to create order:", error);
     res.status(500).json({ error: "Failed to capture order." });
   }
 };
@@ -549,7 +549,7 @@ const ppay = async (req, res) => {
       )} FDX coins are transferd to your account please check your balance.`,
     });
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).send(`Internal Server Error: ${err.message}`);
   }
 };
@@ -573,7 +573,7 @@ const purchasedFdxHistory = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res
       .status(500)
       .json({
@@ -585,7 +585,7 @@ const purchasedFdxHistory = async (req, res) => {
 const update = async (req, res) => {
   try {
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while update Ledger: ${error.message}`,
     });
@@ -599,7 +599,7 @@ const get = async (req, res) => {
       data: getTreasury?.amount?.toString(),
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while get Treasury: ${error.message}`,
     });

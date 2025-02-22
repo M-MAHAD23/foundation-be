@@ -28,7 +28,7 @@ const initializeConnections = async () => {
       res.writeHead(200, { "Content-Type": "image/png" });
       res.end(image, "binary");
     } catch (error) {
-      console.error("Error generating image:", error);
+      // console.error("Error generating image:", error);
       res.status(500).send(`Internal Server Error: ${error.message}`);
     }
   });

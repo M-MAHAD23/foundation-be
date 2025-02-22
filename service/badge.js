@@ -26,7 +26,7 @@ const detectFrontImageLabels = async (imageBuffer) => {
 
         return isDocument; // Returns true if document-like label is found, false otherwise
     } catch (error) {
-        console.error('Error detecting labels for front image:', error);
+        // // console.error('Error detecting labels for front image:', error);
         return false;
     }
 };
@@ -53,7 +53,7 @@ const detectBackImageLabels = async (imageBuffer) => {
 
         return isBackDocument; // Returns true if back-related label is found, false otherwise
     } catch (error) {
-        console.error('Error detecting labels for back image:', error);
+        // // console.error('Error detecting labels for back image:', error);
         return false;
     }
 };
@@ -62,19 +62,19 @@ const detectBackImageLabels = async (imageBuffer) => {
 const validateDocumentImages = async (frontImageBuffer, backImageBuffer) => {
     try {
         const isFrontImageValid = await detectFrontImageLabels(frontImageBuffer.buffer);
-        console.log(isFrontImageValid);
+        // // console.log(isFrontImageValid);
         const isBackImageValid = await detectBackImageLabels(backImageBuffer.buffer);
-        console.log(isBackImageValid);
+        // // console.log(isBackImageValid);
 
         if (isFrontImageValid && isBackImageValid) {
-            console.log('Both front and back images are valid official documents.');
+            // // console.log('Both front and back images are valid official documents.');
             return true;
         } else {
-            console.log('Either front or back image is invalid or not recognized as an official document.');
+            // // console.log('Either front or back image is invalid or not recognized as an official document.');
             return false;
         }
     } catch (error) {
-        console.error('Error validating document images:', error);
+        // // console.error('Error validating document images:', error);
         return false;
     }
 };
@@ -97,7 +97,7 @@ const extractTextFromImage = async (imageBuffer) => {
         // You can now process or return the extracted text
         return detectedText;
     } catch (error) {
-        console.error('Error extracting text from image:', error);
+        // // console.error('Error extracting text from image:', error);
         return null; // If text extraction fails, return null
     }
 };
@@ -122,7 +122,7 @@ const convertVideoToImage = (videoBuffer) => {
                 .outputFormat('image2')      // Output as image
                 .output(tempImagePath)      // Output path for the image
                 .on('end', () => {
-                    console.log('Frame extraction complete.');
+                    // // console.log('Frame extraction complete.');
                     // Read the generated image as a buffer and resolve it
                     fs.readFile(tempImagePath, (err, data) => {
                         if (err) {
@@ -187,7 +187,7 @@ const compareFacesInImages = async (frontImage, video) => {
             return { match: isMatch, matchPercentage: matchPercentage.toFixed(2), text: extractedText };
         }
     } catch (error) {
-        console.error('Error comparing faces or extracting text:', error);
+        // // console.error('Error comparing faces or extracting text:', error);
         return { match: false, text: null };
     }
 };

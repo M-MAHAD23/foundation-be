@@ -122,7 +122,7 @@ router.get(
 router.get("/fetchheaders", (req, res) => {
   // Get headers from the request
   const headers = req.headers;
-  console.log({ headers });
+  // // console.log({ headers });
   // Send headers as JSON response
   res.json({ headers });
 });

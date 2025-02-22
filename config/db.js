@@ -6,17 +6,15 @@ const connectDB = async () => {
     try {
       const conn = await mongoose.connect(
         "mongodb://" +
-          process.env.DOCS_DB_USER +
-          ":" +
-          process.env.DOCS_DB_PASSWORD +
-          "@foundation.cluster-chkicsa8wkr6.us-east-2.docdb.amazonaws.com:27017/" + process.env.DOCS_DB_NAME +"?tls=true&tlsCAFile=global-bundle.pem" +
-          "&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
+        process.env.DOCS_DB_USER +
+        ":" +
+        process.env.DOCS_DB_PASSWORD +
+        "@foundation.cluster-chkicsa8wkr6.us-east-2.docdb.amazonaws.com:27017/" + process.env.DOCS_DB_NAME + "?tls=true&tlsCAFile=global-bundle.pem" +
+        "&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
       );
-      console.log(
-        `DocumentDB Connected! Database Name: ${conn.connection.db.databaseName} -  Host: ${conn.connection.host}`.cyan.underline.bold
-      );
+      // console.log(`DocumentDB Connected! Database Name: ${conn.connection.db.databaseName} -  Host: ${conn.connection.host}`.cyan.underline.bold);
     } catch (err) {
-      //console.log("Could not establish connection to DocDB! " + err);
+      //// console.log("Could not establish connection to DocDB! " + err);
     }
   } else {
     try {
@@ -27,11 +25,9 @@ const connectDB = async () => {
         useUnifiedTopology: true,
       });
 
-      console.log(
-        `MongoDB Connected! Database Name: ${conn.connection.db.databaseName} -  Host: ${conn.connection.host}`.cyan.underline.bold
-      );
+      console.log(`MongoDB Connected! Database Name: ${conn.connection.db.databaseName} -  Host: ${conn.connection.host}`.cyan.underline.bold);
     } catch (err) {
-      //console.log("Could not establish connection to MongoDB! " + err);
+      //// console.log("Could not establish connection to MongoDB! " + err);
     }
   }
 };

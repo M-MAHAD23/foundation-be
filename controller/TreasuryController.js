@@ -8,7 +8,7 @@ const create = async (req, res) => {
     if (!savedTreasury) throw new Error("Treasury Not Created Successfully!");
     res.status(201).json({ data: savedTreasury });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res
       .status(500)
       .json({
@@ -24,7 +24,7 @@ const update = async (req, res) => {
     if (!treasury) throw new Error("No such Treasury!");
     res.status(200).json({ data: treasury.modifiedCount });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res
       .status(500)
       .json({
@@ -40,7 +40,7 @@ const get = async (req, res) => {
       data: getTreasury?.amount?.toString(),
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res
       .status(500)
       .json({

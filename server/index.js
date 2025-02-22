@@ -61,7 +61,7 @@ dotenv.config();
 
 // cron initialize
 
-cronIntialize();
+// cronIntialize();
 
 app.use(
   cors({
@@ -112,7 +112,7 @@ app.use(passport.initialize());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(helmet());
-app.use(morgan("common"));
+// app.use(morgan("common"));
 
 // Pugs
 app.set("view engine", "pug");
@@ -123,11 +123,11 @@ app.use(express.static(path.join(__dirname, "../public")));
 require("../start/routes")(app);
 
 // Serve Swagger documentation
-app.use(
-  "/foundation-api-documentation-swagger",
-  swaggerUI.serve,
-  swaggerUI.setup(swaggerSpec)
-);
+// app.use(
+//   "/foundation-api-documentation-swagger",
+//   swaggerUI.serve,
+//   swaggerUI.setup(swaggerSpec)
+// );
 
 // A unique identifier for your website
 // const rpID = rpID;
@@ -244,7 +244,7 @@ app.post("/verify-registration", async (req, res) => {
     verification = await verifyRegistrationResponse(opts);
   } catch (error) {
     const _error = error;
-    console.error(_error);
+    // console.error(_error);
     return res.status(400).send({ error: _error.message });
   }
 
@@ -346,7 +346,7 @@ app.post("/verify-registration", async (req, res) => {
 //     verification = await verifyAuthenticationResponse(opts);
 //   } catch (error) {
 //     const _error = error as Error;
-//     console.error(_error);
+//     // console.error(_error);
 //     return res.status(400).send({ error: _error.message });
 //   }
 

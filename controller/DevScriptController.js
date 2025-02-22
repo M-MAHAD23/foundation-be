@@ -297,7 +297,7 @@ function sortPercentageObj(obj) {
 //     const bulkOps = users
 //       .map(user => {
 //         if(user.badges.length !== 0) {
-//           //console.log("user================>", user);
+//           //// console.log("user================>", user);
 //           user.badges.forEach(badge => {
 //             if (badge.type && badge.type === "cell-phone") {
 //               badge.details = encryptData(badge.details);
@@ -380,7 +380,7 @@ const createUserListForAllUsers = async (req, res) => {
       userList: result,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while creating the userList: ${error.message}`,
     });
@@ -418,7 +418,7 @@ const resetDatabase = async (dbURL) => {
     const treasuriesCollection = db.collection("treasuries");
     await treasuriesCollection.updateOne({}, { $set: { amount: 10000000 } });
   } catch (error) {
-    console.error(`Error resetting database at ${dbURL}: ${error.message}`);
+    // console.error(`Error resetting database at ${dbURL}: ${error.message}`);
     throw error;
   } finally {
     await client.close();
@@ -432,7 +432,7 @@ const resetMainDatabase = async () => {
     const localURL = "mongodb://0.0.0.0:27017/localDBName";
     await resetDatabase(localURL);
   } catch (error) {
-    console.error(`Error resetting main database: ${error.message}`);
+    // console.error(`Error resetting main database: ${error.message}`);
     throw new Error(`Error resetting main database: ${error.message}`);
   }
 };
@@ -444,7 +444,7 @@ const resetStagingDatabase = async () => {
     const localURL = "mongodb://0.0.0.0:27017/localDBName";
     await resetDatabase(localURL);
   } catch (error) {
-    console.error(`Error resetting staging database: ${error.message}`);
+    // console.error(`Error resetting staging database: ${error.message}`);
     throw new Error(`Error resetting staging database: ${error.message}`);
   }
 };
@@ -456,7 +456,7 @@ const resetDevelopmentDatabase = async () => {
     const localURL = "mongodb://0.0.0.0:27017/localDBName";
     await resetDatabase(localURL);
   } catch (error) {
-    console.error(`Error resetting development database: ${error.message}`);
+    // console.error(`Error resetting development database: ${error.message}`);
     throw new Error(`Error resetting development database: ${error.message}`);
   }
 };
@@ -489,7 +489,7 @@ const dbReset = async (req, res) => {
 
     res.status(200).json({ message: `Database ${db} reset successfully` });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred: ${error.message}`,
     });
@@ -627,7 +627,7 @@ const badgesDetails = async (users) => {
     return { ...badgeCounts, grandTotalOfMentionedBadges }
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 }
@@ -1180,7 +1180,7 @@ const generalStatistics = async (req, res) => {
       BadgeDetails: totalUsersBadgesDetails,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred: ${error.message}`,
     });
@@ -1222,7 +1222,7 @@ const userListSeoSetting = async (req, res) => {
       message: "SEO Created",
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while creating the userList: ${error.message}`,
     });
@@ -1257,7 +1257,7 @@ const userPostSeoSetting = async (req, res) => {
               : false,
         });
       }
-      console.log(counter);
+      // console.log(counter);
       counter++;
     }
 
@@ -1266,7 +1266,7 @@ const userPostSeoSetting = async (req, res) => {
       message: "SEO Created",
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while creating the userList: ${error.message}`,
     });
@@ -1361,7 +1361,7 @@ const setFeedback = async (req, res) => {
       message: "Feedback updated successfully for hidden quests",
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while updating the feedback: ${error.message}`,
     });
@@ -1427,7 +1427,7 @@ const setPostCounters = async (req, res) => {
       data: results,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while updating the feedback: ${error.message}`,
     });
@@ -1482,7 +1482,7 @@ const createGuestLedger = async (req, res) => {
 
     res.status(200).json({ message: "done" });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while updating the feedback: ${error.message}`,
     });
@@ -1512,7 +1512,7 @@ const sendEmail = async (req, res) => {
     return true;
 
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     throw error;
   }
 };
@@ -1540,7 +1540,7 @@ const sendEmailTemplate = async (req, res) => {
     // If no errors occurred, respond with success
     return res.status(200).json({ message: "Mail sent successfully" });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     return res.status(500).json({
       message: `An error occurred while sending the emails: ${error.message}`,
     });
@@ -1606,7 +1606,7 @@ async function getSelectionsContentions(req, res) {
 
     return resultArray;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     throw error;
   }
 }
@@ -1640,7 +1640,7 @@ async function getFeedback(questForeignKey) {
     return result;
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 }
@@ -1726,7 +1726,7 @@ const generatePostData = async (req, res) => {
       });
 
       postCounter++
-      console.log(`${postCounter} completed successfully`);
+      // console.log(`${postCounter} completed successfully`);
     }
 
     // Step 7.0.1: Save the Excel file
@@ -1756,7 +1756,7 @@ const generatePostData = async (req, res) => {
     fs.writeFileSync(excelFilePath, excelBuffer);
     fs.writeFileSync(jsonFilePath, jsonBuffer);
 
-    console.log("Excel and JSON files have been saved successfully!");
+    // console.log("Excel and JSON files have been saved successfully!");
 
     // Set the response headers for both files
     // res.setHeader("Content-Disposition", "attachment; filename=post_data.zip");
@@ -1771,7 +1771,7 @@ const generatePostData = async (req, res) => {
     // // Send the ZIP file containing both the Excel and JSON files
     // res.status(200).send(zipBuffer);
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     return res.status(500).json({
       message: `An error occurred: ${error.message}`,
     });
@@ -1798,15 +1798,15 @@ const addOptionsInBooleanQuests = async (req, res) => {
               { QuestAnswers: newQuestAnswers },
             );
 
-            console.log(`Document with ID ${doc._id} updated successfully.`);
+            // console.log(`Document with ID ${doc._id} updated successfully.`);
           } else {
-            console.log(`No matching options found for whichTypeQuestion: ${doc.whichTypeQuestion}`);
+            // console.log(`No matching options found for whichTypeQuestion: ${doc.whichTypeQuestion}`);
           }
         } else {
-          console.log(`QuestAnswers is not empty for document with ID ${doc._id}. No update needed.`);
+          // console.log(`QuestAnswers is not empty for document with ID ${doc._id}. No update needed.`);
         }
       } catch (updateError) {
-        console.error(`Error updating document with ID ${doc._id}:`, updateError);
+        // console.error(`Error updating document with ID ${doc._id}:`, updateError);
       }
     }
 
@@ -1846,7 +1846,7 @@ const addIdsToQuestAnswersArrayObjects = async (req, res) => {
         { _id: doc._id },
         { QuestAnswers: updatedQuestAnswers },
       );
-      console.log(`Document with ID ${doc._id} updated successfully.`);
+      // console.log(`Document with ID ${doc._id} updated successfully.`);
     }
 
     res.status(200).json({
@@ -1890,10 +1890,10 @@ const selectedContendedPercentages = async (req, res) => {
           }
         );
 
-        console.log(`Document with ID ${doc._id} updated successfully ${docNumber}.`);
+        // console.log(`Document with ID ${doc._id} updated successfully ${docNumber}.`);
         docNumber++;
       } catch (err) {
-        console.error(`Error updating document with ID ${doc._id}:`, err);
+        // console.error(`Error updating document with ID ${doc._id}:`, err);
       }
     }
 
@@ -1950,7 +1950,7 @@ const setGeneralTypes = async (req, res) => {
         { generalType: newGeneralType }
       );
 
-      console.log(`Document with ID ${doc._id} updated successfully with generalType: ${newGeneralType}.`);
+      // console.log(`Document with ID ${doc._id} updated successfully with generalType: ${newGeneralType}.`);
     }
 
     res.status(200).json({
@@ -1972,7 +1972,7 @@ const postDataPDF = async (req, res) => {
     // Read and parse the JSON file
     fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
-        console.error('File reading error:', err);
+        // console.error('File reading error:', err);
         return res.status(500).json({ error: 'Error reading the file' });
       }
 
@@ -1980,7 +1980,7 @@ const postDataPDF = async (req, res) => {
       try {
         postData = JSON.parse(data).postData;
       } catch (parseError) {
-        console.error('JSON parsing error:', parseError);
+        // console.error('JSON parsing error:', parseError);
         return res.status(500).json({ error: 'Error parsing JSON data' });
       }
 
@@ -2057,7 +2057,7 @@ const postDataPDF = async (req, res) => {
     });
 
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
   }
 }
 
@@ -2148,7 +2148,7 @@ const postDataPDFIndividuals = async (req, res) => {
     res.send(zipBuffer);
 
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
@@ -2165,7 +2165,7 @@ const createPDFFromJson = async (req, res) => {
       const jsonDataRaw = fs.readFileSync(jsonFilePath, 'utf8');
       jsonData = JSON.parse(jsonDataRaw);
     } catch (error) {
-      console.error('Error reading or parsing JSON file:', error);
+      // console.error('Error reading or parsing JSON file:', error);
       return res.status(500).json({ message: 'Failed to read or parse JSON file' });
     }
 
@@ -2204,7 +2204,7 @@ const createPDFFromJson = async (req, res) => {
           doc.moveDown(1);
         });
       } else {
-        console.warn(`Expected an array for section "${section}", but found:`, items);
+        // console.warn(`Expected an array for section "${section}", but found:`, items);
       }
 
       doc.moveDown(1);
@@ -2213,10 +2213,10 @@ const createPDFFromJson = async (req, res) => {
     // Finalize the PDF and end the stream
     doc.end();
 
-    console.log(`PDF created successfully at ${pdfFilePath}`);
+    // console.log(`PDF created successfully at ${pdfFilePath}`);
     res.status(200).json({ message: "Success" });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: "Failed to create PDF" });
   }
 }
@@ -2356,7 +2356,7 @@ const userInfo = async (uuid) => {
 
     return resUser;
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while processing userInfo: ${error.message}`,
     });
@@ -2439,7 +2439,7 @@ const userInfo = async (uuid) => {
 //       });
 //     });
 //   } catch (error) {
-//     console.log(error);
+//     // console.log(error);
 //     throw error;
 //   }
 // };
@@ -2537,7 +2537,7 @@ const createUserPDFs = async (req, res) => {
     res.status(200).json({ message: "Success", });
   } catch (error) {
     // Handle errors
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: `Internal server error: ${error}` });
   }
 };
@@ -2578,7 +2578,7 @@ const generatePostJSON = async (post) => {
     return jsonData;
 
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     throw error;
   }
 };
@@ -2762,7 +2762,7 @@ const generatePostPDF = async (post) => {
     return fileName;
 
   } catch (error) {
-    console.error('Error generating PDF:', error.message);
+    // console.error('Error generating PDF:', error.message);
     throw new Error('Failed to generate PDF');
   }
 };
@@ -2779,7 +2779,7 @@ async function splitPDFIntoChunks(pdfDocument) {
   // Use the splitDocuments function for an array
   const chunks = await textSplitter.splitDocuments(documents);
 
-  // console.log(`Split the document into ${chunks.length} chunks.`);
+  // // console.log(`Split the document into ${chunks.length} chunks.`);
   return chunks;
 }
 
@@ -2939,14 +2939,14 @@ const generateUserPDF = (data) => {
       });
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     throw error;
   }
 };
 
 const embedDailyUser = async (req, res) => {
   try {
-    console.log("Starting the user embedding process...");
+    // console.log("Starting the user embedding process...");
 
     // Set up SBERT embeddings
     const model = new HuggingFaceTransformersEmbeddings({
@@ -2983,19 +2983,19 @@ const embedDailyUser = async (req, res) => {
     });
 
 
-    console.log(`Found ${docsToEmbed.length} documents to embed.`);
+    // console.log(`Found ${docsToEmbed.length} documents to embed.`);
 
     let counter = 0;
 
     for (const user of docsToEmbed) {
       try {
-        console.log(`Processing user with UUID: ${user.uuid}`);
+        // console.log(`Processing user with UUID: ${user.uuid}`);
 
         // Clear existing embeddings
         const result = await RagUser.deleteMany({
           source: { $regex: new RegExp(`participant_${encryptData(user.uuid)}\\.pdf`) },
         });
-        console.log(`Deleted ${result.deletedCount} existing documents for UUID: ${encryptData(user.uuid)}`);
+        // console.log(`Deleted ${result.deletedCount} existing documents for UUID: ${encryptData(user.uuid)}`);
 
         // Fetch user data and generate PDF
         const data = await userInfo(user.uuid);
@@ -3007,31 +3007,31 @@ const embedDailyUser = async (req, res) => {
         const pdfData = await loader.load();
 
         if (!pdfData) {
-          console.error(`Failed to load PDF document: ${userPdfData.email}`);
+          // console.error(`Failed to load PDF document: ${userPdfData.email}`);
           continue;
         }
 
         // Split PDF into chunks and add to vector store
         const splitDocs = await splitPDFIntoChunks(pdfData);
         const embedResult = await vectorStore.addDocuments(splitDocs);
-        console.log(`Embedded ${embedResult.length} documents ${userPdfData.email}`);
+        // console.log(`Embedded ${embedResult.length} documents ${userPdfData.email}`);
 
         // Delete PDF file
         await fs.promises.unlink(pdfFilePath);
-        console.log(`Deleted temporary PDF file: ${userPdfData.email}`);
+        // console.log(`Deleted temporary PDF file: ${userPdfData.email}`);
 
         counter++;
       } catch (userError) {
-        console.error(`Error processing user ${user.uuid}: ${userError.message}`);
+        // console.error(`Error processing user ${user.uuid}: ${userError.message}`);
       }
     }
 
-    console.log(`${counter} users' data embedded successfully.`);
-    console.log("User rag is updated with latest posts data.");
+    // console.log(`${counter} users' data embedded successfully.`);
+    // console.log("User rag is updated with latest posts data.");
 
     res.status(200).json({ message: `User embed done embedding ${counter} documents from foundation.` });
   } catch (error) {
-    console.error("Error in embedding process:", error.message);
+    // console.error("Error in embedding process:", error.message);
     throw error;
   }
 };
@@ -3070,7 +3070,7 @@ const embedDailyPosts = async () => {
         source: { $regex: new RegExp(`post_${post_id}\\.pdf`) }
       });
       // Log how many documents were deleted
-      console.log(`Deleted ${result.deletedCount} document(s) for post: ${post_id}`);
+      // console.log(`Deleted ${result.deletedCount} document(s) for post: ${post_id}`);
 
       const infoQuest = await InfoQuestQuestions.findOne(
         {
@@ -3090,7 +3090,7 @@ const embedDailyPosts = async () => {
 
       // Check if the PDF file was successfully loaded
       if (!pdfData) {
-        console.error(`Failed to load PDF document: ${file}`);
+        // console.error(`Failed to load PDF document: ${file}`);
         continue; // Skip to the next file if loading failed
       }
 
@@ -3100,14 +3100,14 @@ const embedDailyPosts = async () => {
       // Add the split documents to the vector store
       const embedResult = await vectorStore.addDocuments(splitDocs);
       counter++;
-      console.log(`${counter} Imported ${embedResult.length} documents from ${filePath} into the MongoDB Atlas vector store.`);
+      // console.log(`${counter} Imported ${embedResult.length} documents from ${filePath} into the MongoDB Atlas vector store.`);
 
       // Delete the PDF file from the current directory using callback
       fs.unlink(filePath, (error) => {
         if (error) {
-          console.error(`Failed to delete PDF file: ${pdfFileName}. Error: ${error.message}`);
+          // console.error(`Failed to delete PDF file: ${pdfFileName}. Error: ${error.message}`);
         } else {
-          console.log(`Deleted PDF file: ${pdfFileName}`);
+          // console.log(`Deleted PDF file: ${pdfFileName}`);
         }
       });
     }
@@ -3115,10 +3115,10 @@ const embedDailyPosts = async () => {
     questRagPostsDoc.dailyQuestsToEmbed = [];
     await questRagPostsDoc.save();
 
-    console.log("Post rag is updated with latest posts data");
+    // console.log("Post rag is updated with latest posts data");
 
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     throw error;
   }
 };
@@ -3147,7 +3147,7 @@ const generatePostPdfForTest = async (req, res) => {
     res.status(200).json({ message: "Files Generated Successfully" });
 
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     throw error;
   }
 };
@@ -3177,7 +3177,7 @@ const tempRemoval = async (req, res) => {
     res.status(200).json(updatedUser);
 
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -3220,7 +3220,7 @@ const postsForcedEmbed = async (req, res) => {
         source: { $regex: new RegExp(`post_${post_id}\\.pdf`) }
       });
       // Log how many documents were deleted
-      // console.log(`Deleted ${result.deletedCount} document(s) for post: ${post_id}`);
+      // // console.log(`Deleted ${result.deletedCount} document(s) for post: ${post_id}`);
 
       const infoQuest = await InfoQuestQuestions.findOne(
         {
@@ -3240,7 +3240,7 @@ const postsForcedEmbed = async (req, res) => {
 
       // Check if the PDF file was successfully loaded
       if (!pdfData) {
-        console.error(`Failed to load PDF document: ${file}`);
+        // console.error(`Failed to load PDF document: ${file}`);
         continue; // Skip to the next file if loading failed
       }
 
@@ -3250,23 +3250,23 @@ const postsForcedEmbed = async (req, res) => {
       // Add the split documents to the vector store
       const embedResult = await vectorStore.addDocuments(splitDocs);
       counter++;
-      console.log(`${counter}: Imported ${embedResult.length} documents from ${pdfFileName} into rag.`);
+      // console.log(`${counter}: Imported ${embedResult.length} documents from ${pdfFileName} into rag.`);
 
       // Delete the PDF file from the current directory using callback
       fs.unlink(filePath, (error) => {
         if (error) {
-          console.error(`Failed to delete PDF file: ${pdfFileName}. Error: ${error.message}`);
+          // console.error(`Failed to delete PDF file: ${pdfFileName}. Error: ${error.message}`);
         } else {
-          console.log(`Deleted PDF file: ${pdfFileName}`);
+          // console.log(`Deleted PDF file: ${pdfFileName}`);
         }
       });
     }
 
-    console.log(`${counter} documents embedded`);
+    // console.log(`${counter} documents embedded`);
     res.status(200).json({ message: "Forced Embed Successfull" });
 
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     throw error;
   }
 };
@@ -3297,7 +3297,7 @@ const articleSEO = async (req, res) => {
     });
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({
       message: "Internal server error"
     });
@@ -3340,20 +3340,20 @@ const sharedPostImageSEO = async (req, res) => {
         // Process the response
         if (response.ok) {
           const result = await response.json();
-          console.log('Response Counter:', counter);
+          // console.log('Response Counter:', counter);
           counter++;
         } else {
-          console.error(`Failed to send data for questForeignKey: ${userQuestSetting.questForeignKey}`);
+          // console.error(`Failed to send data for questForeignKey: ${userQuestSetting.questForeignKey}`);
         }
       } else {
-        console.log(`No document found for questForeignKey: ${userQuestSetting.questForeignKey}`);
+        // console.log(`No document found for questForeignKey: ${userQuestSetting.questForeignKey}`);
       }
 
       // Wait for 10 seconds before the next iteration
       // await sleep(10000); // 10000 ms = 10 seconds
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({
       message: "Internal server error"
     });
@@ -3394,7 +3394,7 @@ const homepageSEO = async (req, res) => {
     });
 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({
       message: "Internal server error"
     });
@@ -3416,7 +3416,7 @@ const upload = async (req, res) => {
       fileUrl: upload,
     });
   } catch (error) {
-    console.error("Error uploading blob to S3:", error);
+    // console.error("Error uploading blob to S3:", error);
     res.status(500).send({ error: "Error uploading file" });
   }
 };
@@ -3426,7 +3426,7 @@ const deleteS3Htmls = async (req, res) => {
     const deleteFiles = await deleteHtmlFiles();
     return deleteFiles ? res.status(200).json({ message: "Files deleted successfully" }) : res.status(500).json({ message: "Can't Delete :(" });
   } catch (error) {
-    console.error("Error deleting the files:", error.message);
+    // console.error("Error deleting the files:", error.message);
     res.status(500).send({ error: "Error deleting files" });
   }
 }

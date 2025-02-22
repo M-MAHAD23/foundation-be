@@ -152,7 +152,7 @@ const userList = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -197,7 +197,7 @@ const addCategoryInUserList = async (req, res) => {
       userList: populatedUserList.list,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -251,7 +251,7 @@ const addCategoryInUserListViewProfile = async (req, res) => {
       data: null,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -279,7 +279,7 @@ const findCategoryById = async (req, res) => {
       userList: categoryDoc,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -311,7 +311,7 @@ const findCategoryByName = async (req, res) => {
       categories: categories,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -366,7 +366,7 @@ const updateCategoryInUserList = async (req, res) => {
       userList: categoryDoc,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -396,7 +396,7 @@ const deleteCategoryFromList = async (req, res) => {
       userList: userList.list,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res
       .status(500)
       .json({ message: `An error occurred: ${error.message}` });
@@ -522,7 +522,7 @@ const generateCategoryShareLink = async (req, res) => {
       link: categoryDoc.link,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -559,7 +559,7 @@ const deleteSharedListSettings = async (req, res) => {
       ),
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -648,8 +648,8 @@ const viewListAll = async (req, res) => {
       //     newSelectedPercentage[key] = Math.round((value / totalCount) * 100) + '%';
       // }
 
-      // //console.log("mergedResult", { selected: mergedResult })
-      // //console.log("newSelectedPercentage", [newSelectedPercentage])
+      // //// console.log("mergedResult", { selected: mergedResult })
+      // //// console.log("newSelectedPercentage", [newSelectedPercentage])
 
       const { startQuestData, ...rest } = desiredResult;
       let questForeginKeyWithStartQuestDataR;
@@ -840,7 +840,7 @@ const viewListAll = async (req, res) => {
       category: newCategoryDoc,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -1070,7 +1070,7 @@ const viewListAllOthers = async (req, res) => {
     if (req.params.peak && req.params.peak === "true") return newCategoryDoc;
 
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     throw error;
   }
 };
@@ -1111,7 +1111,7 @@ const categoryViewCount = async (req, res) => {
       categoryViewCount: categoryDoc.clicks,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -1154,7 +1154,7 @@ const categoryParticipentsCount = async (req, res) => {
       categoryParticipentsCount: categoryDoc.participents,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -1187,7 +1187,7 @@ const categoryStatistics = async (req, res) => {
       categoryParticipentsCount: categoryDoc.participents,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -1226,7 +1226,7 @@ const updatePostOrder = async (req, res) => {
       userList: userList,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -1309,7 +1309,7 @@ const addPostInCategoryInUserList = async (req, res) => {
         .json({ message: "Post already exists in collection" });
     }
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -2077,7 +2077,7 @@ const findCategoryByLink = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -2576,7 +2576,7 @@ const viewList = async (req, res) => {
       category: newCategoryDoc,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -2631,7 +2631,7 @@ const submitResponse = async (req, res) => {
         infoQuest.getUserBadge._id = infoQuest.getUserBadge._id.toString();
       }
     } else {
-      console.log("Post not found.");
+      // // console.log("Post not found.");
     }
 
     const questSetting = await UserQuestSetting.findOne({
@@ -2664,7 +2664,7 @@ const submitResponse = async (req, res) => {
           return dynamicImage;
         })
         .catch((error) => {
-          console.error("Error in dynamic image generation:", error.message);
+          // console.error("Error in dynamic image generation:", error.message);
         });
     }
 
@@ -3336,7 +3336,7 @@ const submitResponse = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -3391,7 +3391,7 @@ const changeAnswer = async (req, res) => {
         infoQuest.getUserBadge._id = infoQuest.getUserBadge._id.toString();
       }
     } else {
-      console.log("Post not found.");
+      // // console.log("Post not found.");
     }
 
     // const questSetting = await UserQuestSetting.findOne(
@@ -3426,7 +3426,7 @@ const changeAnswer = async (req, res) => {
     //             return dynamicImage;
     //         })
     //         .catch(error => {
-    //             console.error("Error in dynamic image generation:", error.message);
+    //             // console.error("Error in dynamic image generation:", error.message);
     //         });
     // }
 
@@ -4110,7 +4110,7 @@ const changeAnswer = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });
@@ -4147,7 +4147,7 @@ const listEnableDisable = async (req, res) => {
       userList: allListResponseData,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while getting the userList: ${error.message}`,
     });

@@ -22,30 +22,30 @@ module.exports.eduEmailCheck = async (req, res, eMail) => {
         // const eMail = req.query.eMail;
 
         if (timeSinceLastCall < minApiCallDelay) {
-        const delay = minApiCallDelay - timeSinceLastCall;
-        await new Promise(resolve => setTimeout(resolve, delay));
+            const delay = minApiCallDelay - timeSinceLastCall;
+            await new Promise(resolve => setTimeout(resolve, delay));
         }
 
         if (apiCallCount >= maxApiCallsPerDay) {
-        // res.status(429).json({ message: 'API Limit', status: 'ERROR' });
-        return { message: 'API Limit', status: 'WAIT' };
+            // res.status(429).json({ message: 'API Limit', status: 'ERROR' });
+            return { message: 'API Limit', status: 'WAIT' };
         }
 
         if (validateEmail(eMail)) {
-            let domain=extractDomain(eMail)
+            let domain = extractDomain(eMail)
 
             lastApiCallTimestamp = Date.now();
             apiCallCount++;
 
             while (true) {
-                
-                let response = await Education.find({domains:domain});
-                let data=response
-            
+
+                let response = await Education.find({ domains: domain });
+                let data = response
+
                 if (data.length < 1) {
-                domain=stripDomain(domain);
-                    if (countPeriods(domain) == 0 ) {
-                    return { message: 'Please add a valid educational email.', status: 'FAIL' };
+                    domain = stripDomain(domain);
+                    if (countPeriods(domain) == 0) {
+                        return { message: 'Please add a valid educational email.', status: 'FAIL' };
                     }
                 } else {
                     return { message: response.data, status: 'OK' };
@@ -58,11 +58,11 @@ module.exports.eduEmailCheck = async (req, res, eMail) => {
             return { message: 'Not a valid e-mail', status: 'ERROR' };
         }
 
-      } catch (error) {
-        console.error(error);
+    } catch (error) {
+        // console.error(error);
         // res.status(500).json({ message: `An error occurred in eduEmail: ${error.message}` });
         return { message: error.message, status: 'UNEXPECTED' };
-      }
+    }
 };
 
 
@@ -71,11 +71,11 @@ function validateEmail(email) {
 }
 
 function extractDomain(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.split('@')[1];
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.split('@')[1];
 }
 
 function stripDomain(domain) {
-  return domain.replace(/^([^.]+)\./, '');
+    return domain.replace(/^([^.]+)\./, '');
 }
 
 function countPeriods(inputString) {

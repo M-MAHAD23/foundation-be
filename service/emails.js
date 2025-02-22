@@ -24,7 +24,7 @@ router.get("/sendPostsEmails", async (req, res) => {
 
   const API_URL = `${BACKEND_URL}/infoquestions/getQuestsAll`;
 
-  console.log("Posts Email being sent.");
+  // // console.log("Posts Email being sent.");
 
   try {
     const response = await axios.get(
@@ -33,7 +33,7 @@ router.get("/sendPostsEmails", async (req, res) => {
 
     const posts = response.data.data;
 
-    // console.log("Posts: ", posts);
+    // // // console.log("Posts: ", posts);
 
     if (posts.length > 0) {
       const formattedPosts = posts.map((post) => {
@@ -70,7 +70,7 @@ router.get("/sendPostsEmails", async (req, res) => {
     }
 
   } catch (error) {
-    console.error("Error fetching questions:", error);
+    // // console.error("Error fetching questions:", error);
     res.render("baseEmail.pug", { posts: [] });
   }
 });
@@ -87,14 +87,14 @@ router.get("/sendArticlesEmails", async (req, res) => {
 
   const API_URL = `${BACKEND_URL}/article/articles`;
 
-  console.log("News Email being sent.");
+  // // console.log("News Email being sent.");
 
   try {
     const response = await axios.get(`${API_URL}?email=true`);
 
     const posts = response.data.data;
 
-    // console.log("News: ", posts);
+    // // // console.log("News: ", posts);
 
     if (posts.length > 0) {
       const formattedPosts = posts.map((post) => {
@@ -131,7 +131,7 @@ router.get("/sendArticlesEmails", async (req, res) => {
     }
 
   } catch (error) {
-    console.error("Error fetching questions:", error);
+    // // console.error("Error fetching questions:", error);
     res.render("article.pug", { posts: [] });
   }
 });

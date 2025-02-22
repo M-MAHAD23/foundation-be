@@ -63,7 +63,7 @@ module.exports.removeCorrected = (inputString) => {
 
 
 module.exports.replaceWithPeriod = (inputString) => {
-  //console.log(": AiValidation.js:43 ~ inputString:", inputString)
+  //// console.log(": AiValidation.js:43 ~ inputString:", inputString)
   // Use a regular expression to check the last character
   const regex = /[^\s.]$/;
 
@@ -144,7 +144,7 @@ module.exports.createQuestTopic = async (topic) => {
     const questTopic = await new QuestTopics({ name: topic })
     await questTopic.save()
   } catch (error) {
-    //console.log(error);
+    //// console.log(error);
   }
 }
 
@@ -157,7 +157,7 @@ module.exports.checkTopicMasterArray = (topic) => {
       return "Other"
     }
   } catch (error) {
-    //console.log(error);
+    //// console.log(error);
   }
 }
 
@@ -174,7 +174,7 @@ module.exports.capitalizeSentence = (sentence) => {
     // Join the words back together to form the capitalized sentence
     return words.join(' ');
   } catch (error) {
-    //console.log(error);
+    //// console.log(error);
   }
 }
 

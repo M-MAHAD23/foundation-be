@@ -21,10 +21,10 @@ const Treasury = require("../models/Treasury");
 
 const oauthSuccessHandler = async (req, res) => {
   try {
-    // console.log("hamza2", req.user);
+    // // console.log("hamza2", req.user);
     // Check Google Account
     // const payload = req.user;
-    // //console.log("🚀 ~ googleHandler ~ payload:", payload)
+    // //// console.log("🚀 ~ googleHandler ~ payload:", payload)
     // // Check if email already exist
     // const user = await User.findOne({ email: payload._json.email });
 
@@ -104,7 +104,7 @@ const oauthSuccessHandler = async (req, res) => {
 
     //   // Generate a JWT token
     //   const token = createToken({ uuid: newUser.uuid });
-    //   // //console.log(req.get('host'));
+    //   // //// console.log(req.get('host'));
     //   res.cookie("jwt", token, cookieConfiguration());
     //   res.cookie("uuid", newUser.uuid, cookieConfiguration());
     const token = createToken(req.user);
@@ -132,7 +132,7 @@ const oauthSuccessHandler = async (req, res) => {
     // res.cookie("jwt", token, cookieConfiguration());
     // res.cookie("uuid", user.uuid), cookieConfiguration();
     // res.redirect(`${FRONTEND_URL}/`);
-    console.error(error.message);
+    // console.error(error.message);
     // res.status(500).json({
     //   message: `An error occurred while signUpUser Auth: ${error.message}`,
     // });
@@ -143,11 +143,11 @@ const oauthSuccessHandler = async (req, res) => {
 
 // const linkedinHandler = async (req, res) => {
 //   try {
-//     console.log("hamza2", req.user);
+//     // console.log("hamza2", req.user);
 //     res.redirect(`${FRONTEND_URL}/`);
 //     return;
 //   } catch (error) {
-//     console.error(error.message);
+//     // console.error(error.message);
 //     res.status(500).json({
 //       message: `An error occurred while signUpUser Auth: ${error.message}`,
 //     });
@@ -159,10 +159,10 @@ const addBadge = async (req, res) => {
 
     // Check Treasury
     const checkTreasury = await Treasury.findOne();
-    if (!checkTreasury) return res.status(404).json({message: "Treasury is not found."});
-    if (Math.round(checkTreasury.amount) <= ACCOUNT_BADGE_ADDED_AMOUNT || Math.round(checkTreasury.amount) <= 0) return res.status(404).json({message: "Treasury is not enough."})
+    if (!checkTreasury) return res.status(404).json({ message: "Treasury is not found." });
+    if (Math.round(checkTreasury.amount) <= ACCOUNT_BADGE_ADDED_AMOUNT || Math.round(checkTreasury.amount) <= 0) return res.status(404).json({ message: "Treasury is not enough." })
 
-    //console.log(req.user);
+    //// console.log(req.user);
     // return
     // const { userId, badgeId } = req.params;
     if (!req.user._json.email) throw new Error("No Email Exist!");

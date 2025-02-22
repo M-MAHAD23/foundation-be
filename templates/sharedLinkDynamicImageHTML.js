@@ -38,9 +38,8 @@ const sharedLinkDynamicImageHTML = (questStartData) => {
         class="flex items-center justify-between border-b-2 border-[#77797B] px-5 py-[0.63rem]"
       >
         <div class="flex items-center gap-[14.36px]">
-          ${
-            questStartData?.moderationRatingCount === 0
-              ? `<svg
+          ${questStartData?.moderationRatingCount === 0
+      ? `<svg
                 width="23"
                 height="23"
                 viewBox="0 0 23 23"
@@ -62,7 +61,7 @@ const sharedLinkDynamicImageHTML = (questStartData) => {
                   fill="white"
                 />
               </svg>`
-              : `<svg
+      : `<svg
                 width="36"
                 height="35"
                 viewBox="0 0 36 35"
@@ -84,7 +83,7 @@ const sharedLinkDynamicImageHTML = (questStartData) => {
                   fill="white"
                 />
               </svg>`
-          }
+    }
           <h1
                 class="relative font-medium text-white text-[1.2rem] leading-[1.2rem]"
               >
@@ -123,7 +122,7 @@ const sharedLinkDynamicImageHTML = (questStartData) => {
         const containerHeight = textElement.parentElement.getBoundingClientRect().height;
 
         // Log container height for debugging
-        console.log("Computed container height:", containerHeight);
+        // // console.log("Computed container height:", containerHeight);
 
         // Get the number of characters in the text
         const textLength = textElement.innerText.length;
@@ -153,7 +152,7 @@ const sharedLinkDynamicImageHTML = (questStartData) => {
         textElement.style.fontSize = newFontSize + "px";
 
         // Log applied font size for debugging
-        console.log("Applied font size:", newFontSize);
+        // // console.log("Applied font size:", newFontSize);
       };
 
       // Adjust font size on window load and resize

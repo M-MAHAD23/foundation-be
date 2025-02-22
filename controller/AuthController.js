@@ -137,7 +137,7 @@ const changePassword = async (req, res) => {
 
     res.status(200).json({ message: "Password changed successfully" });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while changePassword Auth: ${error.message}`,
     });
@@ -156,7 +156,7 @@ const signUpUser = async (req, res) => {
     //   );
 
     const uuid = crypto.randomBytes(11).toString("hex");
-    //console.log(uuid);
+    //// console.log(uuid);
 
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
@@ -239,7 +239,7 @@ const signUpUser = async (req, res) => {
     await sendVerifyEmail(req, res);
     // res.status(200).json({ ...user._doc, token });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signUpUser Auth: ${error.message}`,
     });
@@ -407,7 +407,7 @@ const signUpUserBySocialLogin = async (req, res) => {
     res.cookie("jwt", token, cookieConfiguration());
     res.status(200).json({ ...decryptUser, token });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signUpUser Auth: ${error.message}`,
     });
@@ -599,7 +599,7 @@ const signUpUserBySocialBadges = async (req, res) => {
     res.cookie("jwt", token, cookieConfiguration());
     res.status(200).json({ ...decryptUser, token });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signUpUser Auth: ${error.message}`,
     });
@@ -668,7 +668,7 @@ const signInUser = async (req, res) => {
     res.cookie("jwt", token, cookieConfiguration());
     res.status(200).json(user);
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signInUser Auth: ${error.message}`,
     });
@@ -808,7 +808,7 @@ const createGuestMode = async (req, res) => {
     // res.json({ message: "Successful" });
     res.status(200).json({ ...user._doc, token });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while createGuestMode Auth: ${error.message}`,
     });
@@ -896,7 +896,7 @@ const signUpGuestMode = async (req, res) => {
 
     await sendVerifyEmailGuest(req, res);
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signUpGuestMode Auth: ${error.message}`,
     });
@@ -1075,7 +1075,7 @@ const signUpSocialGuestMode = async (req, res) => {
     res.cookie("jwt", token, cookieConfiguration());
     res.status(200).json({ ...decryptUser, token });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signUpSocialGuestMode Auth: ${error.message}`,
     });
@@ -1280,7 +1280,7 @@ const signUpGuestBySocialBadges = async (req, res) => {
     res.cookie("jwt", token, cookieConfiguration());
     res.status(200).json({ ...decryptUser, token });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signUpSocialGuestMode Auth: ${error.message}`,
     });
@@ -1392,7 +1392,7 @@ const signInUserBySocialLogin = async (req, res) => {
     // if(req.query.GoogleAccount){
     //   signUpUserBySocialLogin(req, res)
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signUpUser Auth: ${error.message}`,
     });
@@ -1527,7 +1527,7 @@ const signInUserBySocialBadges = async (req, res) => {
     // if(req.query.GoogleAccount){
     //   signUpUserBySocialLogin(req, res)
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signUpUser Auth: ${error.message}`,
     });
@@ -1624,7 +1624,7 @@ const updateUserSettings = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while updating user: ${error.message}`,
     });
@@ -1650,7 +1650,7 @@ const updateUserSettings = async (req, res) => {
 //         );
 //       user.badges.forEach((badge) => {
 //         if (badge.legacy || badge.accountName === "Email") {
-//           console.log("Email");
+//           // console.log("Email");
 //           return;
 //         } else if (badge.type && badge.type === "cell-phone") {
 //           badge.details = userCustomizedDecryptData(badge.details, password);
@@ -1705,7 +1705,7 @@ const updateUserSettings = async (req, res) => {
 //       if (badge.legacy || badge.accountName === "Email") {
 //         return;
 //       } else if (badge.type && badge.type === "cell-phone") {
-//         console.log("I am AT Cell-Phone------------------------");
+//         // console.log("I am AT Cell-Phone------------------------");
 //         badge.details = decryptData(badge.details);
 //       } else if (
 //         badge.type &&
@@ -1713,7 +1713,7 @@ const updateUserSettings = async (req, res) => {
 //           badge.type
 //         )
 //       ) {
-//         console.log("I am AT TYPE------------------------");
+//         // console.log("I am AT TYPE------------------------");
 //         badge.details = decryptData(badge.details);
 //       } else if (
 //         badge.accountName &&
@@ -1727,15 +1727,15 @@ const updateUserSettings = async (req, res) => {
 //           "google",
 //         ].includes(badge.accountName)
 //       ) {
-//         console.log("I am AT Acc-Name------------------------");
+//         // console.log("I am AT Acc-Name------------------------");
 //         badge.details = decryptData(badge.details);
 //       } else if (badge.personal && badge.personal.work) {
-//         console.log("I am AT Personal Work------------------------");
+//         // console.log("I am AT Personal Work------------------------");
 //         badge.personal.work = badge.personal.work.map((encryptedData) => {
 //           return decryptData(encryptedData);
 //         });
 //       } else if (badge.personal) {
-//         console.log("I am AT Personal------------------------");
+//         // console.log("I am AT Personal------------------------");
 //         // Decrypt each key in the personal object if it matches one of the personalKeys
 //         const decryptedPersonal = {};
 //         for (const key of personalKeys) {
@@ -1746,13 +1746,13 @@ const updateUserSettings = async (req, res) => {
 
 //         badge.personal = decryptedPersonal;
 //       } else if (badge.web3) {
-//         console.log("I am AT WEB3------------------------");
+//         // console.log("I am AT WEB3------------------------");
 //         badge.web3 = decryptData(badge.web3);
 //       } else if (
 //         badge.type &&
 //         ["desktop", "mobile", "farcaster"].includes(badge.type)
 //       ) {
-//         console.log("I am AT Passkey------------------------");
+//         // console.log("I am AT Passkey------------------------");
 //         badge.data = decryptData(badge.data);
 //       }
 //     });
@@ -1832,7 +1832,7 @@ const updateUserSettings = async (req, res) => {
 //     }
 //     res.status(200).json(resUser);
 //   } catch (error) {
-//     console.error(error.message);
+//     // console.error(error.message);
 //     res.status(500).json({
 //       message: `An error occurred while processing userInfo: ${error.message}`,
 //     });
@@ -2238,7 +2238,7 @@ const userInfo = async (req, res) => {
 
     res.status(200).json(resUser);
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while processing userInfo: ${error.message}`,
     });
@@ -2400,7 +2400,7 @@ const runtimeSignInPassword = async (req, res) => {
 
     res.status(200).json({ user: user, hash: hash });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `Wrong Password: ${error.message}`,
     });
@@ -2433,7 +2433,7 @@ const userInfoById = async (req, res) => {
     res.cookie("jwt", token, cookieConfiguration());
     res.status(200).json(user);
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while userInfoById Auth: ${error.message}`,
     });
@@ -2452,7 +2452,7 @@ const setUserWallet = async (req, res) => {
 
     res.status(201).send("Wallet Updated");
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while setUserWallet Auth: ${error.message}`,
     });
@@ -2470,7 +2470,7 @@ const signedUuid = async (req, res) => {
 
     res.status(201).send("Updated");
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signedUuid Auth: ${error.message}`,
     });
@@ -2493,7 +2493,7 @@ const sendVerifyEmailGuest = async (req, res) => {
     // Step 3 - Email the user a unique verification link
     const url = `${FRONTEND_URL.split(",")[0]
       }/VerifyCode/?${verificationTokenFull}`;
-    // console.log("url", url);
+    // // console.log("url", url);
     // return res.status(200).json({ url });
 
     const SES_CONFIG = {
@@ -2504,7 +2504,7 @@ const sendVerifyEmailGuest = async (req, res) => {
       },
     };
     // Create SES service object
-    //console.log("before sesClient", SES_CONFIG);
+    //// console.log("before sesClient", SES_CONFIG);
 
     const sesClient = new AWS.SES(SES_CONFIG);
 
@@ -2536,16 +2536,16 @@ const sendVerifyEmailGuest = async (req, res) => {
 
     try {
       const res = await sesClient.sendEmail(params).promise();
-      // console.log("Email has been sent!", res);
+      // // console.log("Email has been sent!", res);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
 
     return res.status(200).send({
       message: `Sent a verification email to ${req.body.email}`,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while sendVerifyEmail Auth: ${error.message}`,
     });
@@ -2556,7 +2556,7 @@ const sendVerifyEmail = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
 
-    //console.log("user", user);
+    //// console.log("user", user);
     !user && res.status(404).json("User not Found");
 
     // const verificationTokenFull = jwt.sign({ ID: user._id }, JWT_SECRET, {
@@ -2570,14 +2570,14 @@ const sendVerifyEmail = async (req, res) => {
     );
 
     // const verificationToken = user.generateVerificationToken();
-    //console.log("verificationToken", verificationToken);
+    //// console.log("verificationToken", verificationToken);
 
     // Step 3 - Email the user a unique verification link
     const url = `${FRONTEND_URL.split(",")[0]
       }/VerifyCode/?${verificationTokenFull}`;
-    // console.log("url", url);
+    // // console.log("url", url);
     // return res.status(200).json({ url });
-    // //console.log("url", url);
+    // //// console.log("url", url);
 
     // NODEMAILER
     // const transporter = nodemailer.createTransport({
@@ -2600,9 +2600,9 @@ const sendVerifyEmail = async (req, res) => {
 
     // await transporter.sendMail(mailOptions, function (error, info) {
     //   if (error) {
-    //     //console.log(error);
+    //     //// console.log(error);
     //   } else {
-    //     //console.log("email sent: " + info.response);
+    //     //// console.log("email sent: " + info.response);
     //   }
     // });
     const SES_CONFIG = {
@@ -2613,7 +2613,7 @@ const sendVerifyEmail = async (req, res) => {
       },
     };
     // Create SES service object
-    //console.log("before sesClient", SES_CONFIG);
+    //// console.log("before sesClient", SES_CONFIG);
 
     const sesClient = new AWS.SES(SES_CONFIG);
 
@@ -2645,16 +2645,16 @@ const sendVerifyEmail = async (req, res) => {
 
     try {
       const res = await sesClient.sendEmail(params).promise();
-      // console.log("Email has been sent!", res);
+      // // console.log("Email has been sent!", res);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
 
     return res.status(200).send({
       message: `Sent a verification email to ${req.body.email}`,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while sendVerifyEmail Auth: ${error.message}`,
     });
@@ -2674,7 +2674,7 @@ const sendEmail = async (req, res) => {
       res.status(200).json({ message: `Email Sent Successfully!` });
     }
   } catch (error) {
-    //console.log(error);
+    //// console.log(error);
     res.status(500).json({
       message: `An error occurred while sendVerifyEmail Auth: ${error.message}`,
     });
@@ -2763,7 +2763,7 @@ const verify = async (req, res) => {
   // try {
   //   payload = jwt.verify(token, process.env.USER_VERIFICATION_TOKEN_SECRET);
   // } catch (error) {
-  //   console.error(error.message);
+  //   // console.error(error.message);
   //   res.status(500).json({
   //     message: `An error occurred while verify Auth: ${error.message}`,
   //   });
@@ -2862,7 +2862,7 @@ const verify = async (req, res) => {
       user.verification = true;
       await user.save();
       // Generate a token
-      console.log("userUUID", req.user.uuid);
+      // console.log("userUUID", req.user.uuid);
       const generateToken = createToken({ uuid: req.user.uuid });
 
       res.cookie("uuid", req.user.uuid, cookieConfiguration());
@@ -2958,7 +2958,7 @@ const verify = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while signUpUser Auth: ${error.message}`,
     });
@@ -2993,7 +2993,7 @@ const deleteByUUID = async (req, res) => {
     await User.deleteOne({ uuid });
     res.status(201).send("User has been deleted");
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while deleteByUUID Auth: ${error.message}`,
     });
@@ -3030,7 +3030,7 @@ const logout = async (req, res) => {
     res.clearCookie("jwt", cookieConfiguration());
     res.status(200).json({ message: "User has been logout successfully!" });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while logout Auth: ${error.message}`,
     });
@@ -3064,7 +3064,7 @@ const setStates = async (req, res) => {
 
     res.status(200).json({ message: "Filters Updated", updatedUser });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while setting filters: ${error.message}`,
     });
@@ -3098,7 +3098,7 @@ const setBookmarkStates = async (req, res) => {
 
     res.status(200).json({ message: "Filters Updated", updatedUser });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while setting filters: ${error.message}`,
     });
@@ -3112,7 +3112,7 @@ const getInstaToken = async (req, res) => {
     const redirectUri = req.body.redirectUri;
     const code = req.body.code;
 
-    //console.log("Request Body:", req.body);
+    //// console.log("Request Body:", req.body);
 
     const response = await axios.post(
       "https://api.instagram.com/oauth/access_token",
@@ -3129,17 +3129,17 @@ const getInstaToken = async (req, res) => {
         },
       }
     );
-    // //console.log("token", response.data.access_token, response.data.user_id);
+    // //// console.log("token", response.data.access_token, response.data.user_id);
 
     // const data = await axios.get(
     //   `https://graph.facebook.com/v3.2/${response.data.user_id}?fields=business_discovery.username(bluebottle){followers_count,media_count}&access_token=${response.data.access_token}`
     // );
 
-    // //console.log("Instagram API Response 2:", data);
-    // //console.log("Instagram API Response 1:", response.data);
+    // //// console.log("Instagram API Response 2:", data);
+    // //// console.log("Instagram API Response 1:", response.data);
     res.json(response.data);
   } catch (error) {
-    console.error("Error:", error.message);
+    // console.error("Error:", error.message);
     res
       .status(error.response ? error.response.status : 500)
       .json({ error: error.message });
@@ -3169,7 +3169,7 @@ const deleteBadgeById = async (req, res) => {
 
     res.status(201).send("User has been deleted");
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while deleteBadgeById Auth: ${error.message}`,
     });
@@ -3181,14 +3181,14 @@ const getLinkedInUserInfo = async (req, res) => {
     const { code, grant_type, redirect_uri, client_id, client_secret } =
       req.body;
 
-    //console.log("Request Body getLinkedInUserInfo:", req.body);
+    //// console.log("Request Body getLinkedInUserInfo:", req.body);
     const params = new URLSearchParams();
     params.append("grant_type", grant_type);
     params.append("code", code);
     params.append("client_id", client_id);
     params.append("client_secret", client_secret);
     params.append("redirect_uri", redirect_uri);
-    //console.log("🚀 ~ getLinkedInUserInfo ~ params:", params);
+    //// console.log("🚀 ~ getLinkedInUserInfo ~ params:", params);
     // First Axios request to get the access token
     const getAccessToken = await axios.post(
       "https://www.linkedin.com/oauth/v2/accessToken",
@@ -3200,7 +3200,7 @@ const getLinkedInUserInfo = async (req, res) => {
         timeout: 10000, // Set timeout to 10 seconds (adjust as needed)
       }
     );
-    //console.log("🚀 ~ getLinkedInUserInfo ~ getAccessToken:",getAccessToken.data);
+    //// console.log("🚀 ~ getLinkedInUserInfo ~ getAccessToken:",getAccessToken.data);
     if (!getAccessToken.data.access_token) throw new Error("Token not found!");
     // if token found
     // // Second Axios request to get user info using the access token
@@ -3212,10 +3212,10 @@ const getLinkedInUserInfo = async (req, res) => {
       timeout: 10000, // Set timeout to 10 seconds (adjust as needed)
     });
     if (!response.data) throw new Error("No Data Found");
-    //console.log("LinkedIn API Response:", response.data);
+    //// console.log("LinkedIn API Response:", response.data);
     res.status(200).send(response.data);
   } catch (error) {
-    // console.error('Error:', error);
+    // // console.error('Error:', error);
     return error.message;
   }
 };
@@ -3228,7 +3228,7 @@ const getFacebookUserInfo = async (req, res) => {
     params.append("client_id", client_id);
     params.append("redirect_uri", redirect_uri);
     params.append("client_secret", "5a6af75fdb11fa22c911e57ae0d374df");
-    // //console.log("🚀 ~ getFacebookUserInfo ~ params:", params);
+    // //// console.log("🚀 ~ getFacebookUserInfo ~ params:", params);
     // First Axios request to get the access token
     const responseAccessToken = await axios.get(
       `https://graph.facebook.com/v19.0/oauth/access_token?client_id=${client_id}&redirect_uri=${redirect_uri}&client_secret=${FACEBOOK_APP_SECRET}&code=${code}`,
@@ -3239,7 +3239,7 @@ const getFacebookUserInfo = async (req, res) => {
         timeout: 10000, // Set timeout to 10 seconds (adjust as needed)
       }
     );
-    // console.log("Response Token Via Facebook: ", responseAccessToken);
+    // // console.log("Response Token Via Facebook: ", responseAccessToken);
     if (!responseAccessToken.data.access_token)
       throw new Error("Token not found!");
     // if token found
@@ -3256,10 +3256,10 @@ const getFacebookUserInfo = async (req, res) => {
       }
     );
     if (!response.data) throw new Error("No Data Found");
-    // console.log("LinkedIn API Response:", response.data);
+    // // console.log("LinkedIn API Response:", response.data);
     res.status(200).send(response.data);
   } catch (error) {
-    console.error("Error:", error);
+    // console.error("Error:", error);
     return error.message;
   }
 };
@@ -3299,10 +3299,10 @@ const getConstants = async (req, res) => {
       MESSAGE_SENDING_AMOUNT,
       MINIMUM_READ_REWARD,
     };
-    // console.log(variables);
+    // // console.log(variables);
     res.status(200).json(variables);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: "Error fetching constants" });
   }
 };
@@ -3391,7 +3391,7 @@ const unsubscribe = async (req, res) => {
       return res.status(403).json({ message: "Can't be unsubscribed." });
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: "Error fetching constants" });
   }
 };
@@ -3478,7 +3478,7 @@ const subscribe = async (req, res) => {
       return res.status(200).json({ message: "Subscribed successfully." });
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: "Error fetching constants" });
   }
 };
@@ -3968,7 +3968,7 @@ const fetchUserProfile = async (req, res) => {
       // articles: sharedArticles,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: `Internal Server Error: ${error}` });
   }
 };
@@ -4014,7 +4014,7 @@ const searchUsersByDomain = async (req, res) => {
       currentPage: page,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res
       .status(500)
       .json({ message: `Internal Server Error: ${error.message}` });

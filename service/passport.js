@@ -138,7 +138,7 @@ passport.use(
       profileFields: ["id", "displayName", "photos", "email", "link"],
     },
     function (accessToken, refreshToken, profile, cb) {
-      console.log("profile", profile);
+      // // console.log("profile", profile);
       return cb(null, profile);
       // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
       //   return cb(err, user);

@@ -51,12 +51,9 @@ async function processERC20Logs(log) {
         blockNumber: log.blockNumber,
         timestamp: new Date(), // Optional: Add a timestamp for your record
       };
-      console.log("log", log);
+      // console.log("log", log);
 
-      console.log(
-        "ERC20 Token Deposit Detected:",
-        depositDetails
-      );
+      // console.log("ERC20 Token Deposit Detected:",depositDetails);
 
       // Store the transaction in your database or further processing
       await saveDepositToDatabase(depositDetails);
@@ -70,15 +67,15 @@ async function processERC20Logs(log) {
       });
     }
   } catch (error) {
-    console.error("Error processing ERC20 log:", error);
+    // console.error("Error processing ERC20 log:", error);
   }
 }
 
 async function saveLastProcessedBlock(blockNumber) {
   const typedNumberBlockNumber = Number(blockNumber);
-  console.log(`Block ${typedNumberBlockNumber} will be saved.`);
+  // console.log(`Block ${typedNumberBlockNumber} will be saved.`);
   await Block.findOneAndUpdate({}, { blockNumber: typedNumberBlockNumber }, { upsert: true });
-  console.log(`Block: ${blockNumber} is saved.`);
+  // console.log(`Block: ${blockNumber} is saved.`);
 }
 
 async function loadLastProcessedBlock() {
@@ -88,17 +85,12 @@ async function loadLastProcessedBlock() {
 
 // Update the last processed block
 async function updateLastProcessedBlock(blockNumber) {
-  console.log(`Updating last processed block to ${blockNumber}`);
+  // console.log(`Updating last processed block to ${blockNumber}`);
   saveLastProcessedBlock(blockNumber);
 }
 
 async function fetchAndProcessPastTransactions(fromBlock, toBlock) {
-  console.log(
-    fromBlock,
-    toBlock,
-    web3WSS.utils.toHex(fromBlock), // Convert BigInt to Number
-    web3WSS.utils.toHex(toBlock)
-  );
+  // console.log(fromBlock,toBlock,web3WSS.utils.toHex(fromBlock),web3WSS.utils.toHex(toBlock));
 
   try {
     const logs = await web3WSS.eth.getPastLogs({
@@ -123,9 +115,7 @@ async function fetchAndProcessPastTransactions(fromBlock, toBlock) {
       });
 
       if (existingTransaction) {
-        console.log(
-          `Transaction already processed: Hash = ${transactionHash}, Block = ${blockNumber}`
-        );
+        // console.log(`Transaction already processed: Hash = ${transactionHash}, Block = ${blockNumber}`);
         continue; // Skip this transaction
       }
 
@@ -135,7 +125,7 @@ async function fetchAndProcessPastTransactions(fromBlock, toBlock) {
       await processERC20Logs(processedLog);
     }
   } catch (error) {
-    console.error("Error fetching past transactions:", error);
+    // console.error("Error fetching past transactions:", error);
   }
 }
 
@@ -145,10 +135,7 @@ async function processMissedTransactions() {
     const lastProcessedBlock = await loadLastProcessedBlock();
     const latestBlock = await web3WSS.eth.getBlockNumber();
 
-    console.log(
-      `Checking missed transactions from ${lastProcessedBlock + 1
-      } to ${latestBlock}`
-    );
+    // console.log(`Checking missed transactions from ${lastProcessedBlock + 1} to ${latestBlock}`);
 
     if (lastProcessedBlock < latestBlock) {
       await fetchAndProcessPastTransactions(
@@ -158,7 +145,7 @@ async function processMissedTransactions() {
       // saveLastProcessedBlock(latestBlock);
     }
   } catch (error) {
-    console.error("Error processing missed transactions:", error);
+    // console.error("Error processing missed transactions:", error);
   }
 }
 
@@ -203,10 +190,10 @@ async function transferTokens(toAddress, fromAddress, amount) {
       signedTx.rawTransaction
     );
 
-    console.log("Transaction successful with hash:", receipt.transactionHash);
+    // console.log("Transaction successful with hash:", receipt.transactionHash);
     return receipt;
   } catch (error) {
-    console.error("Error during transaction:", error);
+    // console.error("Error during transaction:", error);
     throw error;
   }
 }
@@ -224,7 +211,7 @@ const fetchFeeBalance = async (req, res) => {
     const balanceTokenIssuer = await contract.methods
       .balanceOf(process.env.DEPLOYER_ACCOUNT)
       .call();
-    console.log(balance);
+    // console.log(balance);
 
     // Convert balance from Wei to Ether
     const etherBalance = web3.utils.fromWei(balance, "ether");
@@ -242,7 +229,7 @@ const fetchFeeBalance = async (req, res) => {
       issuerBalance: etherBalanceOfIssuer,
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res
       .status(500)
       .json({ message: `Error occured while widthrawl`, error: err });
@@ -303,7 +290,7 @@ const widthraw = async (req, res) => {
     res.status(200).json({ message: "Widthrawl Successful" });
     await User.save();
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res
       .status(500)
       .json({ message: `Error occured while widthrawl`, error: err });
@@ -362,9 +349,9 @@ const saveDepositToDatabase = async (depositDetails) => {
     });
     User.fdxDeposit = User.fdxDeposit + Number(depositDetails?.amount);
     await User.save();
-    console.log(`Deposit Succcessful for User: ${User.uuid} for Amount: ${depositDetails?.amount} Transection-Hash ${depositDetails?.transactionHash}`);
+    // console.log(`Deposit Succcessful for User: ${User.uuid} for Amount: ${depositDetails?.amount} Transection-Hash ${depositDetails?.transactionHash}`);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 };
@@ -412,9 +399,9 @@ const deposit = async (tx) => {
     });
     User.fdxDeposit = User.fdxDeposit + Number(amount);
     await User.save();
-    console.log("Deposit Succcessful");
+    // console.log("Deposit Succcessful");
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     throw error;
   }
 };
@@ -443,7 +430,7 @@ function convertBigIntToString(obj) {
 // Function to subscribe to ERC20 token logs
 async function subscribeToERC20TokenDeposits() {
   try {
-    console.log("Listening for ERC20 token deposits...");
+    // console.log("Listening for ERC20 token deposits...");
 
     // Subscribe to the 'logs' event for the specific token contract
     const subscription = await web3WSS.eth.subscribe("logs", {
@@ -461,10 +448,10 @@ async function subscribeToERC20TokenDeposits() {
     });
 
     subscription.on("error", function (error) {
-      console.error("Subscription error:", error);
+      // console.error("Subscription error:", error);
     });
   } catch (error) {
-    console.error("Error subscribing to ERC20 token deposits:", error);
+    // console.error("Error subscribing to ERC20 token deposits:", error);
   }
 }
 

@@ -9,7 +9,7 @@ const update = async (req, res) => {
     await Topic.save();
     res.status(200).json({ data: Topic });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while update QuestTopic: ${error.message}`,
     });
@@ -31,7 +31,7 @@ const update = async (req, res) => {
 //     const totalCount = await QuestTopics.countDocuments({ uuid });
 //     const pageCount = Math.ceil(totalCount / limit);
 
-//     //console.log(questTopics);
+//     //// console.log(questTopics);
 
 //     res.status(200).json({
 //       // data: questTopics,
@@ -40,7 +40,7 @@ const update = async (req, res) => {
 //       totalCount,
 //     });
 //   } catch (error) {
-//     console.error(error);
+//     // console.error(error);
 //     res.status(500).json({
 //       message: `An error occurred while getAll QuestTopic: ${error.message}`,
 //     });
@@ -61,7 +61,7 @@ const getAllTopic = async (req, res) => {
     // const totalCount = await QuestTopics.countDocuments({ uuid });
     // const pageCount = Math.ceil(totalCount / limit);
 
-    // //console.log(questTopics);
+    // //// console.log(questTopics);
     const masterArr = [
       "Architecture",
       "Arts",
@@ -105,7 +105,7 @@ const getAllTopic = async (req, res) => {
       // totalCount,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getAll QuestTopic: ${error.message}`,
     });
@@ -135,7 +135,7 @@ const searchTopics = async (req, res) => {
       totalCount,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while searching topics: ${error.message}`,
     });
@@ -159,7 +159,7 @@ const getAllQuestByTopic = async (req, res) => {
       res.json(newTopic);
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getAllQuestByTopic QuestTopic: ${error.message}`,
     });
@@ -172,7 +172,7 @@ const getAllQuestByTrendingTopic = async (req, res) => {
     const trendingTopics = await Topic.find().sort({ count: -1 }).limit(10);
     res.json(trendingTopics);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getAllQuestByTrendingTopic QuestTopic: ${error.message}`,
     });

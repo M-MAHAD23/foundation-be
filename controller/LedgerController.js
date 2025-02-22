@@ -14,7 +14,7 @@ const create = async (req, res) => {
     if (!savedLedger) throw new Error("Ledger Not Created Successfully!");
     res.status(201).json({ data: savedLedger });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while create Ledger: ${error.message}`,
     });
@@ -56,7 +56,7 @@ const getById = async (req, res) => {
       totalCount,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getById Ledger: ${error.message}`,
     });
@@ -82,7 +82,7 @@ const getAll = async (req, res) => {
       totalCount,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while getAll Ledger: ${error.message}`,
     });
@@ -117,8 +117,8 @@ const search = async (req, res) => {
         ],
       });
       const pageCount = Math.ceil(totalCount / limit);
-      //console.log(pageCount);
-      //console.log(totalCount);
+      //// console.log(pageCount);
+      //// console.log(totalCount);
 
       res.status(200).json({
         data: ledger,
@@ -147,8 +147,8 @@ const search = async (req, res) => {
         ],
       });
       const pageCount = Math.ceil(totalCount / limit);
-      //console.log(pageCount);
-      //console.log(totalCount);
+      //// console.log(pageCount);
+      //// console.log(totalCount);
 
       res.status(200).json({
         data: ledger,
@@ -157,7 +157,7 @@ const search = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while search Ledger: ${error.message}`,
     });
@@ -170,7 +170,7 @@ const remove = async (req, res) => {
     const ledger = Ledgers.findByIdAndDelete(id);
     res.status(200).json({ data: ledger });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while remove Ledger: ${error.message}`,
     });
@@ -231,15 +231,15 @@ const deleteGuestOver30Days = async () => {
       created: { $lte: date30DaysAgo },
     });
 
-    console.log("Guest Cron Results", result);
+    // console.log("Guest Cron Results", result);
   } catch (error) {
-    console.error(`Error deleting guests`, error);
+    // console.error(`Error deleting guests`, error);
   }
 };
 
 const getLstActAndEmailForAllUsers = async () => {
   try {
-    //console.log("getLstActAndEmailForAllUsers")
+    //// console.log("getLstActAndEmailForAllUsers")
 
     // Calculate the date 7 days ago
     const sevenDaysAgo = new Date();
@@ -324,29 +324,26 @@ const getLstActAndEmailForAllUsers = async () => {
           };
           try {
             await sesClient.sendEmail(params).promise();
-            //console.log(`Email has been sent to ${item.email}`);
+            //// console.log(`Email has been sent to ${item.email}`);
           } catch (error) {
-            console.error(`Error sending email to ${item.email}:`, error);
+            // console.error(`Error sending email to ${item.email}:`, error);
           }
         })
       );
 
       // Send the response after all emails have been sent
       // res.json({ lastActiveTimes: finalFilteredUUIDs });
-      //console.log({ lastActiveTimes: finalFilteredUUIDs });
+      //// console.log({ lastActiveTimes: finalFilteredUUIDs });
     } else {
       // If no records are found, send an appropriate message
       // res.status(404).json({ message: 'No records found where 7 days have passed since last activity' });
-      //console.log({ message: 'No records found where 7 days have passed since last activity' });
+      //// console.log({ message: 'No records found where 7 days have passed since last activity' });
     }
 
-    //console.log('Completed==============')
+    //// console.log('Completed==============')
   } catch (error) {
     // If an error occurs during the database query, send an error response
-    console.error(
-      "Error occurred while fetching last active times for all users:",
-      error
-    );
+    // console.error("Error occurred while fetching last active times for all users:",error);
   }
 };
 
@@ -411,9 +408,9 @@ const withdraw = async () => {
     // userSpent.fdxSpent = userSpent.fdxSpent + item.balance;
     // await userSpent.save();
 
-    console.log("Guest Cron Results", result);
+    // console.log("Guest Cron Results", result);
   } catch (error) {
-    console.error(`Error deleting guests`, error);
+    // console.error(`Error deleting guests`, error);
   }
 };
 

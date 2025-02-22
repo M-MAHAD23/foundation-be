@@ -32,10 +32,10 @@ const uploadMultipleBuffers = (req, res, next) => {
     upload.array("files")(req, res, (error) => {
         if (error) {
             if (error instanceof multer.MulterError) {
-                console.log(error);
+                // // console.log(error);
                 return res.status(400).json({ error: error.message });
             } else {
-                console.log(error);
+                // // console.log(error);
                 return res.status(400).json({ error: error.message });
             }
         }

@@ -125,7 +125,7 @@ const createGuestAccountForWrapcast = async (fid) => {
 
     return uuid;
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     // res.status(500).json({
     //   message: `An error occurred while createGuestMode Auth: ${error.message}`,
     // });
@@ -156,7 +156,7 @@ const convertHTMLToImageAndUpload = async (questStartData, link) => {
       html: frameBinaryResultsHTML(questStartData),
       puppeteerArgs: puppeteerOptions,
     }).then(async () => {
-      //console.log("The image was created successfully!");
+      //// console.log("The image was created successfully!");
 
       // Read the image file from the backend directory
       const filePath = `./assets/uploads/images/${imgName}`;
@@ -174,22 +174,22 @@ const convertHTMLToImageAndUpload = async (questStartData, link) => {
 
       if (!s3UploadData) throw new Error("File not uploaded");
 
-      //console.log("s3UploadData", s3UploadData);
+      //// console.log("s3UploadData", s3UploadData);
 
       // Delete the file from the backend directory after uploading to S3
       fs.unlink(filePath, (err) => {
         if (err) {
-          console.error("Error deleting file:", err);
+          // console.error("Error deleting file:", err);
           return;
         }
-        //console.log("File deleted successfully");
+        //// console.log("File deleted successfully");
       });
       return s3UploadData;
     });
 
     return s3UploadData;
   } catch (error) {
-    console.log("Error: ", error.message);
+    // console.log("Error: ", error.message);
     throw error;
   }
 };
@@ -241,7 +241,7 @@ function generateFarcasterFrameMetaTag({
 function frameGenerator(frameProps) {
   const metaTag = generateFarcasterFrameMetaTag(frameProps);
 
-  console.log(metaTag);
+  // console.log(metaTag);
 
   const html = `<!DOCTYPE html>
         <html lang="en">
@@ -472,7 +472,7 @@ const submitThroughFrames = async (req, res) => {
     let response;
     // Without Ip limitations
     if (farcasterUser && alreadyAnswered) {
-      console.log("farcasterUser && alreadyAnswered");
+      // console.log("farcasterUser && alreadyAnswered");
 
       uuid = farcasterUser.uuid;
 
@@ -494,7 +494,7 @@ const submitThroughFrames = async (req, res) => {
         }
       );
     } else if (farcasterUser && !alreadyAnswered) {
-      console.log("farcasterUser && not alreadyAnswered");
+      // console.log("farcasterUser && not alreadyAnswered");
 
       uuid = farcasterUser.uuid;
       requestBody = {
@@ -516,7 +516,7 @@ const submitThroughFrames = async (req, res) => {
         body: JSON.stringify(requestBody), // Convert the request body to a JSON string
       });
     } else if (!farcasterUser) {
-      console.log("No farcasterUser");
+      // console.log("No farcasterUser");
 
       uuid = await createGuestAccountForWrapcast(
         req.body.untrustedData.castId.fid
@@ -552,7 +552,7 @@ const submitThroughFrames = async (req, res) => {
 
     const result = await getQuestionsWithStatus([infoQuest], uuid);
 
-    console.log(infoQuest.result);
+    // console.log(infoQuest.result);
 
     const result1 = await getQuestionsWithUserSettings(result, uuid);
 
@@ -591,7 +591,7 @@ const submitThroughFrames = async (req, res) => {
     // Send the response back to the client
     return res.status(200).send(frameGenerator(frameProps));
   } catch (error) {
-    console.error("Error forwarding request:", error);
+    // console.error("Error forwarding request:", error);
     return res.status(500).send("An error occurred");
   }
 };
@@ -603,7 +603,7 @@ const fidRedirect = async (req, res) => {
       `${FRONTEND_URL}/p/${link}?fid=${req.body.untrustedData.castId.fid}`
     );
   } catch (error) {
-    console.error("Error forwarding request:", error);
+    // console.error("Error forwarding request:", error);
     return res.status(500).send("An error occurred");
   }
 };
@@ -654,7 +654,7 @@ const viewFarcasterResults = async (link, hash, fid) => {
     //   },
     // });
 
-    // console.log("response", response);
+    // // console.log("response", response);
 
     // if (!response.ok)
     //   throw new Error("Start quest while warpcast frame got some error.");
@@ -695,7 +695,7 @@ const viewFarcasterResults = async (link, hash, fid) => {
 
     return frameProps;
   } catch (err) {
-    console.error("Error forwarding request:", err);
+    // console.error("Error forwarding request:", err);
   }
 };
 
@@ -1334,7 +1334,7 @@ const createStartQuest = async (req, res) => {
       data: desiredArray[0],
     });
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).json({
       message: `An error occurred while createStartQuest: ${err.message}`,
     });
@@ -1343,7 +1343,7 @@ const createStartQuest = async (req, res) => {
 
 async function createStartQuestUserList(req, res) {
   try {
-    console.log("req", req);
+    // console.log("req", req);
     const alreadySubmitted = await StartQuests.findOne({
       uuid: req.body.uuid,
       questForeignKey: req.body.questForeignKey,
@@ -1949,14 +1949,14 @@ async function createStartQuestUserList(req, res) {
         })
       );
     }
-    console.log("===============");
+    // console.log("===============");
     return {
       message: "Start Quest Created Successfully",
       startQuestID: question._id,
       data: desiredArray[0],
     };
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).json({
       message: `An error occurred while createStartQuest: ${err.message}`,
     });
@@ -2549,11 +2549,11 @@ const updateChangeAnsStartQuest = async (req, res) => {
             }`
           ] = -1;
         }
-        // //console.log(
+        // //// console.log(
         //   "🚀 ~ updateChangeAnsStartQuest ~ initialStartQuestData:",
         //   initialStartQuestData[0].selected
         // );
-        // //console.log(
+        // //// console.log(
         //   "🚀 ~ updateChangeAnsStartQuest ~ selectedCounter:",
         //   selectedCounter
         // );
@@ -2742,7 +2742,7 @@ const updateChangeAnsStartQuest = async (req, res) => {
       data: desiredArray[0],
     });
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).json({
       message: `An error occurred while updateChangeAnsStartQuest: ${err.message}`,
     });
@@ -2768,7 +2768,7 @@ const updateChangeAnsStartQuest = async (req, res) => {
 
 const updateChangeAnsStartQuestUserList = async (req) => {
   try {
-    console.log(req);
+    // console.log(req);
     const checkSuppression = await InfoQuestQuestions.findOne({
       _id: req.body.questId,
     });
@@ -3353,11 +3353,11 @@ const updateChangeAnsStartQuestUserList = async (req) => {
             }`
           ] = -1;
         }
-        // //console.log(
+        // //// console.log(
         //   "🚀 ~ updateChangeAnsStartQuest ~ initialStartQuestData:",
         //   initialStartQuestData[0].selected
         // );
-        // //console.log(
+        // //// console.log(
         //   "🚀 ~ updateChangeAnsStartQuest ~ selectedCounter:",
         //   selectedCounter
         // );
@@ -3540,7 +3540,7 @@ const updateChangeAnsStartQuestUserList = async (req) => {
       );
     }
 
-    console.log(req);
+    // // console.log(req);
 
     return {
       message: responseMsg,
@@ -3548,7 +3548,7 @@ const updateChangeAnsStartQuestUserList = async (req) => {
       data: desiredArray[0],
     };
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).json({
       message: `An error occurred while updateChangeAnsStartQuest: ${err.message}`,
     });
@@ -3587,17 +3587,17 @@ const getRankedQuestPercent = async (req, res) => {
         if (optionsCount[question]) {
           optionsCount[question] +=
             res.data[res.data.length - 1].selected.length - i;
-          //console.log("selected option" + optionsCount[question]);
-          //console.log(question);
+          //// console.log("selected option" + optionsCount[question]);
+          //// console.log(question);
         } else {
           optionsCount[question] =
             res.data[res.data.length - 1].selected.length - i;
-          //console.log("selected option first" + optionsCount[question]);
-          //console.log(question);
+          //// console.log("selected option first" + optionsCount[question]);
+          //// console.log(question);
         }
         totalCount += res.data[res.data.length - 1].selected.length - i;
         i++;
-        //console.log("Total responses :" + totalCount);
+        //// console.log("Total responses :" + totalCount);
       });
     });
 
@@ -3612,8 +3612,8 @@ const getRankedQuestPercent = async (req, res) => {
           : Number(Math.round(percentage));
       }
 
-      //console.log("🚀 ~ returnPromise.all ~ optionsCount:", optionsCount);
-      //console.log("🚀 ~ returnPromise.all ~ totalCount:", totalCount);
+      //// console.log("🚀 ~ returnPromise.all ~ optionsCount:", optionsCount);
+      //// console.log("🚀 ~ returnPromise.all ~ totalCount:", totalCount);
       const responseObj = {
         rankedPercentage: percentageOfOptions,
       };
@@ -3630,7 +3630,7 @@ const getStartQuestPercent = async (req, res) => {
       questForeignKey: req.body.questForeignKey,
       // questForeignKey: "64a6d5a9313105966b9682f2",
     });
-    // //console.log("StartQuestsData", StartQuestsData);
+    // //// console.log("StartQuestsData", StartQuestsData);
 
     let startQuestWithNagativeAns = 0,
       startQuestWithPositiveAns = 0; //length of total length
@@ -3690,34 +3690,34 @@ const getStartQuestPercent = async (req, res) => {
             const question = option.question.trim();
             if (selectedOptionsCount[question]) {
               selectedOptionsCount[question]++;
-              //console.log("selected option" + selectedOptionsCount[question]);
-              //console.log(question);
+              //// console.log("selected option" + selectedOptionsCount[question]);
+              //// console.log(question);
             } else {
               selectedOptionsCount[question] = 1;
-              //console.log("selected option first" + selectedOptionsCount[question]);
-              //console.log(question);
+              //// console.log("selected option first" + selectedOptionsCount[question]);
+              //// console.log(question);
             }
           });
           totalSelectedResponses++;
         }
-        //console.log("Total Selected responses :" + totalSelectedResponses);
+        //// console.log("Total Selected responses :" + totalSelectedResponses);
 
         if (res.data[res.data.length - 1].contended) {
           res.data[res.data.length - 1].contended.map((option) => {
             const question = option.question.trim();
             if (contendedOptionsCount[question]) {
               contendedOptionsCount[question]++;
-              //console.log("contended option" + contendedOptionsCount[question]);
-              //console.log(question);
+              //// console.log("contended option" + contendedOptionsCount[question]);
+              //// console.log(question);
             } else {
               contendedOptionsCount[question] = 1;
-              //console.log("First contended option" + contendedOptionsCount[question]);
-              //console.log(question);
+              //// console.log("First contended option" + contendedOptionsCount[question]);
+              //// console.log(question);
             }
           });
           totalContendedResponses++;
         }
-        //console.log("Total Contended responses :" + totalContendedResponses);
+        //// console.log("Total Contended responses :" + totalContendedResponses);
       }
     });
 
@@ -3725,29 +3725,29 @@ const getStartQuestPercent = async (req, res) => {
       if (questype === 1) {
         let TotalNumberOfAns =
           startQuestWithPositiveAns + startQuestWithNagativeAns;
-        //console.log("TotalNumberOfAns", TotalNumberOfAns);
+        //// console.log("TotalNumberOfAns", TotalNumberOfAns);
 
         let percentageOfYesAns =
           startQuestWithPositiveAns === 0
             ? 0
             : (startQuestWithPositiveAns * 100) / TotalNumberOfAns;
-        //console.log("startQuestWithPositiveAns", percentageOfYesAns);
+        //// console.log("startQuestWithPositiveAns", percentageOfYesAns);
 
         let percentageOfNoAns =
           startQuestWithNagativeAns === 0
             ? 0
             : (startQuestWithNagativeAns * 100) / TotalNumberOfAns;
-        //console.log("startQuestWithNagativeAns", percentageOfNoAns);
+        //// console.log("startQuestWithNagativeAns", percentageOfNoAns);
 
         let TotalNumberOfConAns =
           startQuestWithPositiveConAns + startQuestWithNagativeConAns;
-        //console.log("TotalNumberOfConAns", TotalNumberOfConAns);
+        //// console.log("TotalNumberOfConAns", TotalNumberOfConAns);
 
         let percentageOfYesConAns =
           startQuestWithPositiveConAns === 0
             ? 0
             : (startQuestWithPositiveConAns * 100) / TotalNumberOfConAns;
-        //console.log("startQuestWithPositiveConAns", percentageOfYesConAns);
+        //// console.log("startQuestWithPositiveConAns", percentageOfYesConAns);
 
         let percentageOfNoConAns =
           startQuestWithNagativeConAns === 0
@@ -3781,7 +3781,7 @@ const getStartQuestPercent = async (req, res) => {
           },
         };
 
-        //console.log(responseObj);
+        //// console.log(responseObj);
         res.status(200).json([responseObj]);
       } else {
         const percentageOfSelectedOptions = {};
@@ -3817,7 +3817,7 @@ const getStartQuestPercent = async (req, res) => {
           selectedPercentage: percentageOfSelectedOptions,
           contendedPercentage: percentageOfContendedOptions,
         };
-        //console.log(responseObj);
+        //// console.log(responseObj);
         res.status(200).json([responseObj]);
       }
     });

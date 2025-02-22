@@ -65,7 +65,7 @@ const create = async (req, res) => {
     if (!savedRedeem) throw new Error("Redeem Not Created Successfully!");
     res.status(201).json({ data: savedRedeem });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while create Redeem: ${error.message}`,
     });
@@ -163,7 +163,7 @@ const transfer = async (req, res) => {
     if (!updatedRedeem) throw new Error("Redeem Not updated Successfully!");
     res.status(201).json({ data: updatedRedeem });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while transfer Redeem: ${error.message}`,
     });
@@ -200,7 +200,7 @@ const deleteRedeem = async (req, res) => {
 
     res.status(200).json({ data: "", msg: "Successfully deleted!" });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while delete Redeem: ${error.message}`,
     });
@@ -264,7 +264,7 @@ const balance = async (req, res) => {
     // if (!deletedRedeem) throw new Error("Redeem Not deleted Successfully!");
     res.status(201).json({ data: deletedRedeem });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while create Redeem: ${error.message}`,
     });
@@ -285,7 +285,7 @@ const getUnredeemedById = async (req, res) => {
       data: redeem,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getUnredeemedById Redeem: ${error.message}`,
     });
@@ -304,7 +304,7 @@ const getRedeemHistoryById = async (req, res) => {
       data: redeem,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getRedeemHistoryById Redeem: ${error.message}`,
     });
@@ -332,7 +332,7 @@ const getRedeemHistoryById = async (req, res) => {
 //       totalCount,
 //     });
 //   } catch (error) {
-//     console.error(error);
+//     // console.error(error);
 //     res.status(500).json({
 //       message: `An error occurred while getById Redeem: ${error.message}`,
 //     });
@@ -358,7 +358,7 @@ const getAll = async (req, res) => {
       totalCount,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while getAll Redeem: ${error.message}`,
     });
@@ -390,8 +390,8 @@ const getAll = async (req, res) => {
 //       ],
 //     });
 //     const pageCount = Math.ceil(totalCount / limit);
-//     //console.log(pageCount);
-//     //console.log(totalCount);
+//     //// console.log(pageCount);
+//     //// console.log(totalCount);
 
 //     res.status(200).json({
 //       data: redeem,
@@ -399,7 +399,7 @@ const getAll = async (req, res) => {
 //       totalCount,
 //     });
 //   } catch (error) {
-//     console.error(error);
+//     // console.error(error);
 //     res.status(500).json({
 //       message: ` An error occurred while search Redeem: ${error.message}`,
 //     });
@@ -412,7 +412,7 @@ const getAll = async (req, res) => {
 //     const redeem = Redeem.findByIdAndDelete(id);
 //     res.status(200).json({ data: redeem });
 //   } catch (error) {
-//     console.error(error);
+//     // console.error(error);
 //     res.status(500).json({
 //       message: `An error occurred while remove Redeem: ${error.message}`,
 //     });

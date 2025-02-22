@@ -61,11 +61,11 @@ const uploadSingle = (req, res, next) => {
       // Handle multer errors
       if (error instanceof multer.MulterError) {
         // A multer error occurred when uploading.
-        console.log(error);
+        // // console.log(error);
         return res.status(400).json({ error: error.message });
       } else {
         // An unknown error occurred when uploading.
-        console.log(error);
+        // // console.log(error);
         return res.status(400).json({ error: error.message });
       }
     }

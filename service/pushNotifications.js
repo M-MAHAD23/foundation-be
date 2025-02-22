@@ -22,7 +22,7 @@ router.post("/subscribe", (req, res) => {
     const payload = JSON.stringify({ title: "Push Test" });
 
     // Pass object into sendNotification
-    webpush.sendNotification(subscription, payload).catch((err) => console.error(err));
+    webpush.sendNotification(subscription, payload).catch((err) => { throw error; });
 });
 
 

@@ -223,7 +223,7 @@ const getArticles = async (req, res) => {
 
     res.status(200).json({ data: articles, hasNextPage: hasNextPage });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -239,7 +239,7 @@ const getArticlesUserUuid = async (req, res) => {
     }
     res.status(200).json(article);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -302,7 +302,7 @@ const getArticleById = async (req, res) => {
 
     return res.status(400).json({ message: "Invalid id parameter" });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -422,15 +422,15 @@ const createArticle = async (req, res) => {
         // Delay before deleting the original file from the filesystem after resizing
         fs.unlink(filePath, (err) => {
           if (err) {
-            console.error(`Error deleting file: ${filePath}`, err);
+            // console.error(`Error deleting file: ${filePath}`, err);
           } else {
-            console.log(`File deleted: ${filePath}`);
+            // console.log(`File deleted: ${filePath}`);
           }
         });
 
         // Delete the output directory and its contents using fs.rm
         await fs.promises.rm(outputDir, { recursive: true });
-        console.log(`Directory deleted: ${outputDir}`);
+        // console.log(`Directory deleted: ${outputDir}`);
 
         rePublishArticle.s3Urls = s3Urls;
         await rePublishArticle.save();
@@ -538,15 +538,15 @@ const createArticle = async (req, res) => {
       // Delay before deleting the original file from the filesystem after resizing
       fs.unlink(filePath, (err) => {
         if (err) {
-          console.error(`Error deleting file: ${filePath}`, err);
+          // console.error(`Error deleting file: ${filePath}`, err);
         } else {
-          console.log(`File deleted: ${filePath}`);
+          // console.log(`File deleted: ${filePath}`);
         }
       });
 
       // Delete the output directory and its contents using fs.rm
       await fs.promises.rm(outputDir, { recursive: true });
-      console.log(`Directory deleted: ${outputDir}`);
+      // console.log(`Directory deleted: ${outputDir}`);
 
       savedArticle.s3Urls = s3Urls;
       await savedArticle.save();
@@ -564,7 +564,7 @@ const createArticle = async (req, res) => {
 
     res.status(201).json(savedArticle);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -586,7 +586,7 @@ const updateArticle = async (req, res) => {
 
     res.status(200).json(updatedArticle);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -608,7 +608,7 @@ const deleteArticle = async (req, res) => {
 
     res.status(204).json();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -698,15 +698,15 @@ const fileUploadArticle = async (req, res) => {
     // Delay before deleting the original file from the filesystem after resizing
     fs.unlink(filePath, (err) => {
       if (err) {
-        console.error(`Error deleting file: ${filePath}`, err);
+        // console.error(`Error deleting file: ${filePath}`, err);
       } else {
-        console.log(`File deleted: ${filePath}`);
+        // console.log(`File deleted: ${filePath}`);
       }
     });
 
     // Delete the output directory and its contents using fs.rm
     await fs.promises.rm(outputDir, { recursive: true });
-    console.log(`Directory deleted: ${outputDir}`);
+    // console.log(`Directory deleted: ${outputDir}`);
 
     const updateArticle = await Article.findOneAndUpdate(
       {
@@ -734,7 +734,7 @@ const fileUploadArticle = async (req, res) => {
       s3Urls,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -824,7 +824,7 @@ const uniqueLink = async (req, res) => {
       article: { ...article._doc, articleSetting: articleSetting },
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -853,7 +853,7 @@ const deleteArticleSetting = async (req, res) => {
 
     res.status(204).json(); // No content response if deletion was successful
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -879,7 +879,7 @@ const setArticleSettingStatus = async (req, res) => {
       data: updatedArticleSetting,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: error.message });
   }
 };

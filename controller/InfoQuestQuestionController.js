@@ -385,7 +385,7 @@ const hiddenOptionsfx = async (
       optionsRemoved: data.optionsRemoved, // Include the updated optionsRemoved array
     };
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     throw error;
   }
 };
@@ -615,7 +615,7 @@ const badgeCountfx = async (data, userUuid, questForeignKey, sharedLinkOnly, opr
       result,
     };
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     throw error;
   }
 };
@@ -878,7 +878,7 @@ const targetfx = async (
     };
     // }
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     throw error;
   }
 };
@@ -1374,7 +1374,7 @@ const activityfx = async (data, userUuid, questForeignKey, sharedLinkOnly, allPa
       result,
     };
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     throw error;
   }
 };
@@ -1528,7 +1528,7 @@ const createInfoQuestQuest = async (req, res) => {
 
     if (req.body.sharePost && req.body.spotlight) {
       let requestBody;
-      console.log(req.body.sharePost, req.body.spotlight)
+      // console.log(req.body.sharePost, req.body.spotlight)
       if (req?.body?.sharePost === "true" && req?.body?.spotlight === "false") {
         requestBody = {
           body:
@@ -1628,7 +1628,7 @@ const createInfoQuestQuest = async (req, res) => {
       moderationRatingCount: req.body.moderationRatingCount,
     });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while createInfoQuestQuest: ${error.message}`,
     });
@@ -1737,7 +1737,7 @@ const deleteInfoQuestQuest = async (req, res) => {
       { source: req.params.questId }, // Find documents where source contains the questId
       { $pull: { source: req.params.questId } } // Remove the questId from the source array
     );
-    console.log("Post Also deleted from Articles");
+    // console.log("Post Also deleted from Articles");
 
     const txID = crypto.randomBytes(11).toString("hex");
 
@@ -1813,7 +1813,7 @@ const constraintForUniqueQuestion = async (req, res) => {
     // If no matching question is found, it's unique
     return res.status(200).json({ isUnique: true });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).send("Internal Server Error");
   }
 };
@@ -1892,7 +1892,7 @@ const getAllQuestsWithOpenInfoQuestStatus = async (req, res) => {
       allQuestions = await Promise.all(mapPromises);
       allQuestions = allQuestions.filter((question) => question !== null);
     } else if (req.body.Page === "Hidden") {
-      //console.log("running");
+      //// console.log("running");
       filterObj.uuid = uuid;
       filterObj.hidden = true;
       const Questions = await UserQuestSetting.find(filterObj).sort({
@@ -1911,7 +1911,7 @@ const getAllQuestsWithOpenInfoQuestStatus = async (req, res) => {
       allQuestions = await Promise.all(mapPromises);
       totalQuestionsCount = await UserQuestSetting.countDocuments(filterObj);
     } else if (req.body.Page === "SharedLink") {
-      //console.log("running");
+      //// console.log("running");
       filterObj.uuid = uuid;
       filterObj.linkStatus = "Enable";
       const Questions = await UserQuestSetting.find(filterObj).sort({
@@ -1972,8 +1972,8 @@ const getAllQuestsWithOpenInfoQuestStatus = async (req, res) => {
         uuid: req.body.uuid,
         // uuid: "0x81597438fdd366b90971a73f39d56eea4702c43a",
       });
-      //console.log("startedQuestions", startedQuestions);
-      //console.log("allQuestions", allQuestions.length);
+      //// console.log("startedQuestions", startedQuestions);
+      //// console.log("allQuestions", allQuestions.length);
       await allQuestions.map(async function (rcrd) {
         let startedOrNot = false;
         await startedQuestions.map(function (rec) {
@@ -1987,10 +1987,10 @@ const getAllQuestsWithOpenInfoQuestStatus = async (req, res) => {
       });
       const start = req.body.start;
       const end = req.body.end;
-      //console.log("Start" + start + "end" + end);
+      //// console.log("Start" + start + "end" + end);
 
       const resultArray = Result.slice(start, end).map(getPercentage);
-      //console.log("resultArray", resultArray.length);
+      //// console.log("resultArray", resultArray.length);
       const desiredArray = resultArray.map((item) => ({
         ...item._doc,
         selectedPercentage: item.selectedPercentage,
@@ -2002,7 +2002,7 @@ const getAllQuestsWithOpenInfoQuestStatus = async (req, res) => {
       });
     }
   } catch (err) {
-    //console.log(err);
+    //// console.log(err);
     res.status(500).send(err);
   }
 };
@@ -2073,7 +2073,7 @@ const getAllQuestsWithAnsweredStatus = async (req, res) => {
       allQuestions = await Promise.all(mapPromises);
       allQuestions = allQuestions.filter((question) => question !== null);
     } else if (req.body.Page === "Hidden") {
-      //console.log("running");
+      //// console.log("running");
       filterObj.uuid = uuid;
       filterObj.hidden = true;
       const Questions = await UserQuestSetting.find(filterObj).sort({
@@ -2090,7 +2090,7 @@ const getAllQuestsWithAnsweredStatus = async (req, res) => {
       allQuestions = await Promise.all(mapPromises);
       totalQuestionsCount = await UserQuestSetting.countDocuments(filterObj);
     } else if (req.body.Page === "SharedLink") {
-      //console.log("running");
+      //// console.log("running");
       filterObj.uuid = uuid;
       filterObj.linkStatus = "Enable";
       const Questions = await UserQuestSetting.find(filterObj).sort({
@@ -2122,8 +2122,8 @@ const getAllQuestsWithAnsweredStatus = async (req, res) => {
       const hiddenUserSettingIds = hiddenUserSettings.map(
         (userSetting) => userSetting.questForeignKey
       );
-      //console.log("🚀 ~ getAllQuestsWithAnsStatus ~ hiddenUserSettingIds:",hiddenUserSettingIds);
-      //console.log("🚀 ~ getAllQuestsWithAnsStatus ~ filterObj:", filterObj);
+      //// console.log("🚀 ~ getAllQuestsWithAnsStatus ~ hiddenUserSettingIds:",hiddenUserSettingIds);
+      //// console.log("🚀 ~ getAllQuestsWithAnsStatus ~ filterObj:", filterObj);
 
       allQuestions = await InfoQuestQuestions.find({
         _id: { $nin: hiddenUserSettingIds },
@@ -2146,15 +2146,15 @@ const getAllQuestsWithAnsweredStatus = async (req, res) => {
       const resultArray = allQuestions.map(getPercentage);
       res.status(200).json(resultArray);
     } else {
-      //console.log("req.body.uuid", req.body.uuid);
+      //// console.log("req.body.uuid", req.body.uuid);
       let Records = [];
       const startedQuestions = await StartQuests.find({
         uuid: req.body.uuid,
         // uuid: "0x81597438fdd366b90971a73f39d56eea4702c43a",
       });
 
-      //console.log("startedQuestions", startedQuestions);
-      //console.log("allQuestions", allQuestions.length);
+      //// console.log("startedQuestions", startedQuestions);
+      //// console.log("allQuestions", allQuestions.length);
 
       await allQuestions.map(async function (rcrd) {
         let startedOrNot = false;
@@ -2167,7 +2167,7 @@ const getAllQuestsWithAnsweredStatus = async (req, res) => {
           Records.push(rcrd);
         }
       });
-      //console.log("Records", Records.length);
+      //// console.log("Records", Records.length);
       let Result = [];
       await Records.map(async function (rcrd) {
         await startedQuestions.map(function (rec) {
@@ -2189,7 +2189,7 @@ const getAllQuestsWithAnsweredStatus = async (req, res) => {
 
       const start = req.body.start;
       const end = req.body.end;
-      //console.log("Start" + start + "end" + end);
+      //// console.log("Start" + start + "end" + end);
 
       const resultArray = Result.slice(start, end).map(getPercentage);
       const desiredArray = resultArray.map((item) => ({
@@ -2205,7 +2205,7 @@ const getAllQuestsWithAnsweredStatus = async (req, res) => {
     }
   } catch (err) {
     res.status(500).send(err);
-    //console.log(err);
+    //// console.log(err);
   }
 };
 
@@ -2230,12 +2230,12 @@ const getAllQuestsWithDefaultStatus = async (req, res) => {
   let allQuestions = [];
   let filterObj = {};
   let totalQuestionsCount;
-  //console.log("blockedTerms", blockedTerms);
+  //// console.log("blockedTerms", blockedTerms);
   if (filter === true) {
     if (Page === "Bookmark") {
       filterObj.createdBy = uuid;
     } else {
-      //console.log("My Post Else");
+      //// console.log("My Post Else");
       filterObj.uuid = uuid;
     }
   }
@@ -2279,9 +2279,9 @@ const getAllQuestsWithDefaultStatus = async (req, res) => {
     // // Use Promise.allSettled to handle errors without stopping execution
     // await Promise.allSettled(mapPromises);
   }
-  //console.log("Outside Bookmark");
+  //// console.log("Outside Bookmark");
   if (Page === "Bookmark") {
-    //console.log("Inside Bookmark");
+    //// console.log("Inside Bookmark");
     const hiddenUserSettings = await UserQuestSetting.find({
       hidden: true,
       uuid,
@@ -2306,8 +2306,8 @@ const getAllQuestsWithDefaultStatus = async (req, res) => {
       .skip(skip)
       .limit(pageSize);
 
-    //console.log("Questions Length", Questions.length);
-    //console.log("Bookmark filterObj", filterObj);
+    //// console.log("Questions Length", Questions.length);
+    //// console.log("Bookmark filterObj", filterObj);
 
     const mapPromises = Questions.map(async function (record) {
       return await InfoQuestQuestions.findOne({
@@ -2319,7 +2319,7 @@ const getAllQuestsWithDefaultStatus = async (req, res) => {
         },
       }).populate("getUserBadge", "badges");
     });
-    //console.log(mapPromises);
+    //// console.log(mapPromises);
 
     allQuestions = await Promise.all(mapPromises);
     allQuestions = allQuestions.filter((question) => question !== null);
@@ -2332,9 +2332,9 @@ const getAllQuestsWithDefaultStatus = async (req, res) => {
       },
     });
 
-    //console.log("allQuestionsBookmark", allQuestions.length);
+    //// console.log("allQuestionsBookmark", allQuestions.length);
   } else if (Page === "Hidden") {
-    //console.log("running");
+    //// console.log("running");
     filterObj.uuid = uuid;
     filterObj.hidden = true;
     const Questions = await UserQuestSetting.find(filterObj)
@@ -2352,10 +2352,10 @@ const getAllQuestsWithDefaultStatus = async (req, res) => {
     allQuestions = await Promise.all(mapPromises);
     totalQuestionsCount = await UserQuestSetting.countDocuments(filterObj);
   } else if (req.body.Page === "SharedLink") {
-    //console.log("running");
+    //// console.log("running");
     filterObj.uuid = uuid;
     filterObj.linkStatus = { $in: ["Enable", "Disable"] };
-    //console.log("filterObj", filterObj);
+    //// console.log("filterObj", filterObj);
     const Questions = await UserQuestSetting.find(filterObj)
       .sort({ createdAt: -1 })
       // .sort(sort === "Newest First" ? { createdAt: -1 } : "createdAt")
@@ -2387,7 +2387,7 @@ const getAllQuestsWithDefaultStatus = async (req, res) => {
       (userSetting) => userSetting.questForeignKey
     );
 
-    //console.log("🚀 ~ getAllQuestsWithDefaultStatus ~ filterObj:", filterObj);
+    //// console.log("🚀 ~ getAllQuestsWithDefaultStatus ~ filterObj:", filterObj);
     allQuestions = await InfoQuestQuestions.find({
       _id: { $nin: hiddenUserSettingIds },
       ...filterObj,
@@ -2411,7 +2411,7 @@ const getAllQuestsWithDefaultStatus = async (req, res) => {
     });
   }
 
-  //console.log("allQuestionsData", allQuestions.length);
+  //// console.log("allQuestionsData", allQuestions.length);
 
   const resultArray = allQuestions.map((item) => getPercentage(item));
   const desiredArray = resultArray.map((item) => ({
@@ -2499,7 +2499,7 @@ const getQuestsAll = async (req, res) => {
     uuid = domainOwner?.uuid;
   }
 
-  //console.log("blockedTerms", blockedTerms);
+  //// console.log("blockedTerms", blockedTerms);
 
   // Calculate the number of documents to skip to get to the desired page
   const skip = (page - 1) * pageSize;
@@ -2510,7 +2510,7 @@ const getQuestsAll = async (req, res) => {
   if (sort === "Most Popular") {
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-    console.log("date", sevenDaysAgo);
+    // console.log("date", sevenDaysAgo);
     filterObj.createdAt = { $gte: sevenDaysAgo };
     if (email === "true") {
       // Get the current date and the date from seven days ago
@@ -2559,11 +2559,11 @@ const getQuestsAll = async (req, res) => {
   }
 
   if (filter === "true") {
-    //console.log("filter");
+    //// console.log("filter");
     if (Page === "Bookmark") {
       filterObj.createdBy = uuid;
     } else {
-      //console.log("My Post Else");
+      //// console.log("My Post Else");
       filterObj.uuid = uuid;
     }
   }
@@ -2654,9 +2654,9 @@ const getQuestsAll = async (req, res) => {
     // await Promise.allSettled(mapPromises);
   }
 
-  //console.log("Outside Bookmark");
+  //// console.log("Outside Bookmark");
   if (Page === "Bookmark") {
-    //console.log("Inside Bookmark");
+    //// console.log("Inside Bookmark");
     const hiddenUserSettings = await UserQuestSetting.find({
       hidden: true,
       uuid,
@@ -2681,8 +2681,8 @@ const getQuestsAll = async (req, res) => {
       .skip(skip)
       .limit(pageSize);
 
-    //console.log("Questions Length", Questions.length);
-    //console.log("Bookmark filterObj", filterObj);
+    //// console.log("Questions Length", Questions.length);
+    //// console.log("Bookmark filterObj", filterObj);
 
     const mapPromises = Questions.map(async function (record) {
       return await InfoQuestQuestions.findOne({
@@ -2695,7 +2695,7 @@ const getQuestsAll = async (req, res) => {
         },
       }).populate("getUserBadge", "badges");
     });
-    //console.log(mapPromises);
+    //// console.log(mapPromises);
 
     allQuestions = await Promise.all(mapPromises);
     allQuestions = allQuestions.filter((question) => question !== null);
@@ -2708,9 +2708,9 @@ const getQuestsAll = async (req, res) => {
       },
     });
 
-    //console.log("allQuestionsBookmark", allQuestions.length);
+    //// console.log("allQuestionsBookmark", allQuestions.length);
   } else if (Page === "Hidden") {
-    //console.log("running");
+    //// console.log("running");
     filterObj.uuid = uuid;
     // filterObj.hidden = true;
     // filterObj.feedbackMessage = { $ne: "", $exists: true };
@@ -2741,7 +2741,7 @@ const getQuestsAll = async (req, res) => {
     // }
     totalQuestionsCount = await UserQuestSetting.countDocuments(filterObj);
   } else if (Page === "SharedLink") {
-    //console.log("running");
+    //// console.log("running");
     filterObj.uuid = uuid;
     if (req.query.domain && req.query.isPublicProfile === "true") {
       filterObj.linkStatus = { $in: ["Enable"] };
@@ -2752,7 +2752,7 @@ const getQuestsAll = async (req, res) => {
     else {
       filterObj.linkStatus = { $in: ["Enable", "Disable"] };
     }
-    //console.log("filterObj", filterObj);
+    //// console.log("filterObj", filterObj);
     let Questions;
     // if (fetchProfile === "true") {
     //   Questions = await UserQuestSetting.find(filterObj).sort({
@@ -2794,7 +2794,7 @@ const getQuestsAll = async (req, res) => {
       .sort({ createdAt: -1 })
       .limit(pageSize)
       .skip(skip);
-    //console.log("all", allQuestions);
+    //// console.log("all", allQuestions);
   } else {
     // moderation filter
     filterObj.moderationRatingCount = {
@@ -2812,8 +2812,8 @@ const getQuestsAll = async (req, res) => {
     const hiddenUserSettingIds = hiddenUserSettings.map(
       (userSetting) => userSetting.questForeignKey
     );
-    //console.log("🚀 ~ getQuestsAll ~ hiddenUserSettingIds:",hiddenUserSettingIds);
-    //console.log("🚀 ~ getQuestsAll ~ filterObj:", filterObj);
+    //// console.log("🚀 ~ getQuestsAll ~ hiddenUserSettingIds:",hiddenUserSettingIds);
+    //// console.log("🚀 ~ getQuestsAll ~ filterObj:", filterObj);
 
     // let query = InfoQuestQuestions.find({
     //   _id: { $nin: hiddenUserSettingIds },
@@ -2886,21 +2886,21 @@ const getQuestsAll = async (req, res) => {
       ...filterObj,
     });
   }
-  //console.log("allQuestionsData", allQuestions.length);
+  //// console.log("allQuestionsData", allQuestions.length);
 
   let resultArray;
   let nextPage;
 
   if (participated === "Yes") {
-    //console.log("Inside resultArray if participated");
+    //// console.log("Inside resultArray if participated");
     let Records = [];
     const startedQuestions = await StartQuests.find({
       uuid,
       // uuid: "0x81597438fdd366b90971a73f39d56eea4702c43a",
     });
 
-    //console.log("startedQuestions", startedQuestions);
-    //console.log("allQuestions", allQuestions.length);
+    //// console.log("startedQuestions", startedQuestions);
+    //// console.log("allQuestions", allQuestions.length);
 
     await allQuestions.map(async function (rcrd) {
       let startedOrNot = false;
@@ -2914,7 +2914,7 @@ const getQuestsAll = async (req, res) => {
         Records.push(rcrd);
       }
     });
-    //console.log("Records", Records.length);
+    //// console.log("Records", Records.length);
     let Result = [];
     await Records.map(async function (rcrd) {
       await startedQuestions.map(function (rec) {
@@ -2936,7 +2936,7 @@ const getQuestsAll = async (req, res) => {
 
     // const start = req.body.start;
     // const end = req.body.end;
-    //console.log("Start" + start + "end" + end);
+    //// console.log("Start" + start + "end" + end);
 
     nextPage = end < Result.length;
     resultArray = Result?.slice(start, end).map(getPercentage);
@@ -2957,7 +2957,7 @@ const getQuestsAll = async (req, res) => {
     //   })
     // )
   } else if (participated === "Not") {
-    //console.log("Inside resultArray participated Not");
+    //// console.log("Inside resultArray participated Not");
 
     let Result = [];
     const startedQuestions = await StartQuests.find({
@@ -2981,7 +2981,7 @@ const getQuestsAll = async (req, res) => {
     });
     // const start = req.body.start;
     // const end = req.body.end;
-    //console.log("Start" + start + "end" + end);
+    //// console.log("Start" + start + "end" + end);
     // resultArray = await Promise.all(
     //   Result.slice(start, end).map(async (item) => {
     //     const hiddenOptions = await HiddenOptions.findOne(
@@ -3001,7 +3001,7 @@ const getQuestsAll = async (req, res) => {
     resultArray = Result.slice(start, end).map(getPercentage);
     nextPage = end < Result.length;
   } else {
-    //console.log("Inside resultArray else");
+    //// console.log("Inside resultArray else");
     nextPage = skip + pageSize < totalQuestionsCount;
     resultArray = allQuestions?.map((item) => getPercentage(item));
     // resultArray = await Promise.all(
@@ -3029,7 +3029,7 @@ const getQuestsAll = async (req, res) => {
       uuid,
     });
 
-    // //console.log('bookmarkDoc', bookmarkDoc)
+    // //// console.log('bookmarkDoc', bookmarkDoc)
     if (bookmarkDoc) {
       resultArray[i]._doc.bookmark = true;
     } else {
@@ -3442,7 +3442,7 @@ const getAllQuestsWithResult = async (req, res) => {
     allQuestions = allQuestions.filter((question) => question !== null);
     totalQuestionsCount = await BookmarkQuests.countDocuments(filterObj);
   } else if (Page === "Hidden") {
-    //console.log("running");
+    //// console.log("running");
     filterObj.uuid = uuid;
     filterObj.hidden = true;
     const Questions = await UserQuestSetting.find(filterObj).sort({
@@ -3461,7 +3461,7 @@ const getAllQuestsWithResult = async (req, res) => {
     allQuestions = await Promise.all(mapPromises);
     totalQuestionsCount = await UserQuestSetting.countDocuments(filterObj);
   } else if (req.body.Page === "SharedLink") {
-    //console.log("running");
+    //// console.log("running");
     filterObj.uuid = uuid;
     filterObj.linkStatus = "Enable";
     const Questions = await UserQuestSetting.find(filterObj).sort({
@@ -3543,7 +3543,7 @@ const getQuestById = async (req, res) => {
     if (page === "SharedLink") {
       quest = await UserQuestSetting.findOne({ link: postLink });
     }
-    //console.log("questSharedLink", quest);
+    //// console.log("questSharedLink", quest);
 
     const advanceAnalyticsDoc = await AdvanceAnalytics.findOne({
       userUuid: uuid,
@@ -3595,13 +3595,13 @@ const getQuestById = async (req, res) => {
               break;
             // Add more cases for other types as needed
             default:
-              console.warn(`Unhandled type: ${analyticsItem.type}`);
+              // console.warn(`Unhandled type: ${analyticsItem.type}`);
               break;
           }
           // Call the function with the dynamic parameters
           currentResult = await func(...params);
         } else {
-          console.warn(`No function found for type: ${analyticsItem.type}`);
+          // console.warn(`No function found for type: ${analyticsItem.type}`);
         }
       }
 
@@ -3693,7 +3693,7 @@ const getQuestById = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     res.status(500).json({
       message: `An error occurred while getQuestById InfoQuest: ${error.message}`,
     });
@@ -3799,7 +3799,7 @@ const getQuestsCustom = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     res.status(500).json({
       message: `An error occurred while getting Quests Info: ${error.message}`,
     });
@@ -3830,7 +3830,7 @@ async function getQuestByIdQuestForeignKey(questForeignKey) {
       questForeignKey: questForeignKey,
     });
     // }
-    // //console.log("questSharedLink", quest);
+    // //// console.log("questSharedLink", quest);
 
     const resultArray = result1.map((item) =>
       getPercentageQuestForeignKey(item, quest)
@@ -3845,7 +3845,7 @@ async function getQuestByIdQuestForeignKey(questForeignKey) {
 
     return desiredArray[0];
   } catch (error) {
-    //console.log(error);
+    //// console.log(error);
     res.status(500).json({
       message: `An error occurred while getQuestById InfoQuest: ${error.message}`,
     });
@@ -3880,7 +3880,7 @@ async function getQuestByIdUserUuid(questForeignKey, uuid) {
 
     return desiredArray[0];
   } catch (error) {
-    //console.log(error);
+    //// console.log(error);
     res.status(500).json({
       message: `An error occurred while getQuestById InfoQuest: ${error.message}`,
     });
@@ -3890,7 +3890,7 @@ async function getQuestByIdUserUuid(questForeignKey, uuid) {
 const getQuestByUniqueShareLink = async (req, res) => {
   try {
     // req.cookie
-    //console.log("🚀 ~ getQuestById ~ req.cookie:", req.cookies);
+    //// console.log("🚀 ~ getQuestById ~ req.cookie:", req.cookies);
     // return
     const uuid = req.query.uuid;
     const { uniqueShareLink } = req.params; // Use req.params instead of req.body
@@ -4059,7 +4059,7 @@ const getQuestByUniqueShareLink = async (req, res) => {
       data: desiredArrayWithFeedback,
     });
   } catch (error) {
-    //console.log(error);
+    //// console.log(error);
     res.status(500).json({
       message: `An error occurred while getQuestByUniqueShareLink InfoQuest: ${error.message}`,
     });
@@ -4095,7 +4095,7 @@ const getQuestByUniqueId = async (req, res) => {
       data: desiredArray,
     });
   } catch (error) {
-    //console.log(error);
+    //// console.log(error);
     res.status(500).json({
       message: `An error occurred while getQuestByUniqueShareLink InfoQuest: ${error.message}`,
     });
@@ -4192,7 +4192,7 @@ const getAllQuestsWithCompletedStatus = async (req, res) => {
       allQuestions = await Promise.all(mapPromises);
       allQuestions = allQuestions.filter((question) => question !== null);
     } else if (req.body.Page === "Hidden") {
-      //console.log("running");
+      //// console.log("running");
       filterObj.uuid = uuid;
       filterObj.hidden = true;
       const Questions = await UserQuestSetting.find(filterObj).sort({
@@ -4211,7 +4211,7 @@ const getAllQuestsWithCompletedStatus = async (req, res) => {
       allQuestions = await Promise.all(mapPromises);
       totalQuestionsCount = await UserQuestSetting.countDocuments(filterObj);
     } else if (req.body.Page === "SharedLink") {
-      //console.log("running");
+      //// console.log("running");
       filterObj.uuid = uuid;
       filterObj.linkStatus = "Enable";
       const Questions = await UserQuestSetting.find(filterObj).sort({
@@ -4283,7 +4283,7 @@ const getAllQuestsWithCompletedStatus = async (req, res) => {
 
       const start = req.body.start;
       const end = req.body.end;
-      //console.log("Start" + start + "end" + end);
+      //// console.log("Start" + start + "end" + end);
 
       const resultArray = Result.slice(start, end).map(getPercentage);
       const desiredArray = resultArray.map((item) => ({
@@ -4382,7 +4382,7 @@ const getAllQuestsWithChangeAnsStatus = async (req, res) => {
       allQuestions = await Promise.all(mapPromises);
       allQuestions = allQuestions.filter((question) => question !== null);
     } else if (req.body.Page === "Hidden") {
-      //console.log("running");
+      //// console.log("running");
       filterObj.uuid = uuid;
       filterObj.hidden = true;
       const Questions = await UserQuestSetting.find(filterObj).sort(
@@ -4398,7 +4398,7 @@ const getAllQuestsWithChangeAnsStatus = async (req, res) => {
       allQuestions = await Promise.all(mapPromises);
       totalQuestionsCount = await UserQuestSetting.countDocuments(filterObj);
     } else if (req.body.Page === "SharedLink") {
-      //console.log("running");
+      //// console.log("running");
       filterObj.uuid = uuid;
       filterObj.linkStatus = "Enable";
       const Questions = await UserQuestSetting.find(filterObj).sort(
@@ -4551,7 +4551,7 @@ async function getQuestionsWithUserSettings(allQuestions, uuid) {
       const userQuestSettings = await UserQuestSetting.find({
         uuid: uuid,
       });
-      // //console.log(
+      // //// console.log(
       //   "🚀 ~ getQuestionsWithUserSettings ~ userQuestSettings:",
       //   userQuestSettings
       // );
@@ -4634,7 +4634,7 @@ async function getQuestionsWithUserSettingsQuestForeignKey(
       const userQuestSettings = await UserQuestSetting.find({
         questForeignKey: questForeignKey,
       });
-      // //console.log(
+      // //// console.log(
       //   "🚀 ~ getQuestionsWithUserSettings ~ userQuestSettings:",
       //   userQuestSettings
       // );
@@ -4697,7 +4697,7 @@ const checkMediaDuplicateUrl = async (req, res) => {
       duplicate: false,
     });
   } catch (error) {
-    console.error("Error checking ID in URL field:", error.message);
+    // console.error("Error checking ID in URL field:", error.message);
     res
       .status(500)
       .json({ error: `Error checking ID in URL field: ${error.message}` });
@@ -4723,7 +4723,7 @@ const checkGifDuplicateUrl = async (req, res) => {
       duplicate: false,
     });
   } catch (error) {
-    console.error("Error checking ID in URL field:", error.message);
+    // console.error("Error checking ID in URL field:", error.message);
     res
       .status(500)
       .json({ error: `Error checking ID in URL field: ${error.message}` });
@@ -4748,7 +4748,7 @@ const getFullSoundcloudUrlFromShortUrl = async (req, res) => {
     const finalUrl = getFinalRedirectSoundCloud(shortUrl);
     res.json({ finalUrl });
   } catch (error) {
-    console.error("Error retrieving final redirect URL:", error);
+    // console.error("Error retrieving final redirect URL:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
@@ -4792,7 +4792,7 @@ const getFlickerUrl = async (req, res) => {
     res.json({ imageUrl });
   } catch (error) {
     // If an error occurs, return an error response
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: `${error.message}` });
   }
 };
@@ -5128,7 +5128,7 @@ const advanceAnalytics = async (req, res) => {
     });
   } catch (error) {
     // If an error occurs, return an error response
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: `${error.message}` });
   }
 };
@@ -5191,7 +5191,7 @@ const deleteAdvanceAnalytics = async (req, res) => {
     });
   } catch (error) {
     // If an error occurs, return an error response
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -5256,7 +5256,7 @@ const updateAnalyticsOrder = async (req, res) => {
     });
   } catch (error) {
     // If an error occurs, return an error response
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -5306,7 +5306,7 @@ const deleteAllAdvanceAnalytics = async (req, res) => {
     });
   } catch (error) {
     // If an error occurs, return an error response
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: error.message });
   }
 };

@@ -63,7 +63,7 @@ const s3ImageUpload = async ({ fileBuffer, fileName, type }) => {
       };
     }
   } catch (error) {
-    console.error("Error uploading file to S3:", error);
+    // // console.error("Error uploading file to S3:", error);
     throw error; // Re-throw the error for handling in the calling function
   }
 };
@@ -225,7 +225,7 @@ const uploadS3Bucket = async ({
           Key: file.Key,
         };
         await s3.deleteObject(deleteParams).promise();
-        console.log(`Deleted file: ${file.Key}`);
+        // // console.log(`Deleted file: ${file.Key}`);
       }
     }
 
@@ -330,7 +330,7 @@ const uploadS3Bucket = async ({
     return new Promise((resolve, reject) => {
       s3.upload(params, (err, data) => {
         if (err) {
-          console.error("Error uploading HTML to S3:", err);
+          // // console.error("Error uploading HTML to S3:", err);
           reject(err);
         } else {
           // Return based on web3type
@@ -347,7 +347,7 @@ const uploadS3Bucket = async ({
       });
     });
   } catch (error) {
-    console.error(error);
+    // // console.error(error);
     throw error;
   }
 };
@@ -430,7 +430,7 @@ const deleteDirectoryFromS3 = async (folderName) => {
     const listedObjects = await s3.listObjectsV2(listParams).promise();
 
     if (listedObjects.Contents.length === 0) {
-      console.log(`No objects found in folder: ${folderName}`);
+      // // console.log(`No objects found in folder: ${folderName}`);
       return; // Nothing to delete
     }
 
@@ -442,9 +442,9 @@ const deleteDirectoryFromS3 = async (folderName) => {
     };
 
     await s3.deleteObjects(deleteParams).promise();
-    console.log(`Deleted folder: ${folderName}`);
+    // // console.log(`Deleted folder: ${folderName}`);
   } catch (error) {
-    console.error(`Error deleting folder ${folderName}:`, error);
+    // // console.error(`Error deleting folder ${folderName}:`, error);
   }
 };
 
@@ -463,7 +463,7 @@ const deleteFileFromS3 = async (s3Url) => {
   try {
     await s3.deleteObject(params).promise();
   } catch (error) {
-    console.error(`Error deleting folder ${folderName}:`, error);
+    // // console.error(`Error deleting folder ${folderName}:`, error);
   }
 };
 
@@ -478,7 +478,7 @@ const deleteHtmlFiles = async () => {
       .promise();
 
     if (!Contents || Contents.length === 0) {
-      console.log('No files found in the specified directory.');
+      // // console.log('No files found in the specified directory.');
       return;
     }
 
@@ -486,7 +486,7 @@ const deleteHtmlFiles = async () => {
     const htmlFiles = Contents.filter((item) => item.Key.endsWith('.html'));
 
     if (htmlFiles.length === 0) {
-      console.log('No .html files found.');
+      // // console.log('No .html files found.');
       return;
     }
 
@@ -500,10 +500,10 @@ const deleteHtmlFiles = async () => {
 
     // Delete the .html files
     const deleteResult = await s3.deleteObjects(deleteParams).promise();
-    console.log('Deleted files:', deleteResult.Deleted);
+    // // console.log('Deleted files:', deleteResult.Deleted);
     return deleteResult ? true : false;
   } catch (error) {
-    console.error('Error deleting .html files:', error);
+    // // console.error('Error deleting .html files:', error);
   }
 };
 

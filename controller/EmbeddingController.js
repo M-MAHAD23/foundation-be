@@ -73,14 +73,14 @@ async function readPdfFromS3(bucketName, fileName) {
     const loader = new PDFLoader(tempFilePath, { splitPages: false });
     const pdfDoc = await loader.load();
 
-    // console.log(`Loaded PDF from S3: ${fileName}`);
+    // // console.log(`Loaded PDF from S3: ${fileName}`);
 
     // Clean up the temporary file
     await fs.unlink(tempFilePath);
 
     return pdfDoc;
   } catch (error) {
-    console.error(`Error reading PDF from S3: ${error.message}`);
+    // console.error(`Error reading PDF from S3: ${error.message}`);
     return null;
   }
 }
@@ -97,7 +97,7 @@ async function splitPDFIntoChunks(pdfDocument) {
   // Use the splitDocuments function for an array
   const chunks = await textSplitter.splitDocuments(documents);
 
-  // console.log(`Split the document into ${chunks.length} chunks.`);
+  // // console.log(`Split the document into ${chunks.length} chunks.`);
   return chunks;
 }
 
@@ -115,11 +115,11 @@ const setEmbedding = async (req, res) => {
     });
 
     connKnowledgeBase.once("open", () => {
-      console.log("Connected to MongoDB Knowledge Base");
+      // console.log("Connected to MongoDB Knowledge Base");
     });
 
     connKnowledgeBase.once("error", (err) => {
-      console.error("Error connecting to MongoDB Knowledge Base:", err);
+      // console.error("Error connecting to MongoDB Knowledge Base:", err);
     });
 
     // Wait for the connection to be established
@@ -161,7 +161,7 @@ const setEmbedding = async (req, res) => {
 
       // Check if the PDF file was successfully loaded
       if (!pdfData) {
-        console.error(`Failed to load PDF document: ${file}`);
+        // console.error(`Failed to load PDF document: ${file}`);
         continue; // Skip to the next file if loading failed
       }
       // Split the PDF document into chunks
@@ -170,9 +170,7 @@ const setEmbedding = async (req, res) => {
       // Add the split documents to the vector store
       const result = await vectorStore.addDocuments(splitDocs);
       counter++;
-      console.log(
-        `${counter} Imported ${result.length} documents from ${file} into the MongoDB Atlas vector store.`
-      );
+      // console.log(`${counter} Imported ${result.length} documents from ${file} into the MongoDB Atlas vector store.`);
     }
 
     // Close the connection once done
@@ -180,7 +178,7 @@ const setEmbedding = async (req, res) => {
 
     res.status(200).send("All documents processed and imported successfully.");
   } catch (err) {
-    console.error("Error setting up MongoDBAtlasVectorSearch:", err);
+    // console.error("Error setting up MongoDBAtlasVectorSearch:", err);
     res.status(500).send(`Internal Server Error: ${err.message}`);
   }
 };
@@ -294,11 +292,11 @@ const retrieveData = async (req, res) => {
     // });
 
     // connKnowledgeBase.once("open", () => {
-    //   console.log("Connected to MongoDB Knowledge Base for retrieval");
+    //   // console.log("Connected to MongoDB Knowledge Base for retrieval");
     // });
 
     // connKnowledgeBase.once("error", (err) => {
-    //   console.error("Error connecting to MongoDB Knowledge Base:", err);
+    //   // console.error("Error connecting to MongoDB Knowledge Base:", err);
     // });
 
     // // Wait for the connection to be established
@@ -349,10 +347,7 @@ const retrieveData = async (req, res) => {
     // Return the search results to the user
     res.status(200).json(sortedResults);
   } catch (error) {
-    console.error(
-      "Error retrieving data from MongoDBAtlasVectorSearch:",
-      error.message
-    );
+    // console.error("Error retrieving data from MongoDBAtlasVectorSearch:",error.message);
     res
       .status(500)
       .json({ message: `Internal Server Error: ${error.message}` });
@@ -557,7 +552,7 @@ const chatGptData = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error("Error:", error.message);
+    // console.error("Error:", error.message);
     res
       .status(500)
       .json({ message: `Internal Server Error: ${error.message}` });

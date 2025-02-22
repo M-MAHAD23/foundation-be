@@ -465,7 +465,7 @@ const send = async (req, res) => {
 
     res.status(201).json({ data: savedSendMessage });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while send DirectMessage: ${error.message}`,
     });
@@ -611,7 +611,7 @@ const sendPublic = async (req, res) => {
 
     res.status(201).json({ data: savedSendMessage });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({ message: error.message });
   }
 }
@@ -785,7 +785,7 @@ const requestStatus = async (req, res) => {
 
     return res.status(200).json({ data: receivedMessage });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: error.message });
   }
 }
@@ -808,7 +808,7 @@ const getAllSend = async (req, res) => {
       data: sendMessage,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getAllSend DirectMessage: ${error.message}`,
     });
@@ -847,7 +847,7 @@ const getAllReceive = async (req, res) => {
       }),
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getAllReceive DirectMessage: ${error.message}`,
     });
@@ -866,7 +866,7 @@ const deleteMessage = async (req, res) => {
     }
     res.status(200).json({ data: "", msg: "Successfully deleted!" });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while deleteMessage DirectMessage: ${error.message}`,
     });
@@ -1023,7 +1023,7 @@ const view = async (req, res) => {
 
     res.status(201).json({ data: receiveMessage });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while view DirectMessage: ${error.message}`,
     });
@@ -1057,7 +1057,7 @@ const trashMessage = async (req, res) => {
     }
     res.status(200).json({ data: message, msg: "Successfully trashed!" });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while trashMessage DirectMessage: ${error.message}`,
     });
@@ -1086,7 +1086,7 @@ const restoreMessage = async (req, res) => {
 
     res.status(200).json({ data: message, msg: "Successfully restored!" });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while restoreMessage DirectMessage: ${error.message}`,
     });
@@ -1109,7 +1109,7 @@ const getAllDeletedMessage = async (req, res) => {
       data: receiveMessage,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getAllDeletedMessage DirectMessage: ${error.message}`,
     });
@@ -1192,7 +1192,7 @@ const draft = async (req, res) => {
       return res.status(201).json({ data: savedDraftedMessage });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while draft DirectMessage: ${error.message}`,
     });
@@ -1218,7 +1218,7 @@ const getAllDraft = async (req, res) => {
       data: sendMessage,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getAllDraft DirectMessage: ${error.message}`,
     });
@@ -1288,7 +1288,7 @@ const cancleMessage = async (req, res) => {
       data: sentMessage,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getAllDraft DirectMessage: ${error.message}`,
     });
@@ -1458,7 +1458,7 @@ const getCountForOptions = async (req, res) => {
       dynamicParticipantsCount: aaUsersUuids.length,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while getAllDraft DirectMessage: ${error.message}`,
     });

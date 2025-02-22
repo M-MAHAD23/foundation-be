@@ -87,7 +87,7 @@ async function handleRequest(
     //   userMessage = removeTrailingQuestionMarks(userMessage);
     //   userMessage = userMessage + "."
     // }
-    console.log("message", userMessage);
+    // console.log("message", userMessage);
     //  throw new Error("custom");
     const response = await axios.post(
       OPEN_AI_URL,
@@ -130,13 +130,13 @@ async function handleRequest(
 
 function checkResponse(responseData, userMessage, callType, req, res) {
   let filtered = responseData.choices[0].message.content;
-  //console.log("🚀 ~ checkResponse ~ filtered:", filtered)
+  //// console.log("🚀 ~ checkResponse ~ filtered:", filtered)
   let status = "OK";
 
   let found;
   // if (callType == 2 || callType == 10) {
   //   filtered = removeQuotes(filtered);
-  //   console.log("fitered", filtered);
+  //   // console.log("fitered", filtered);
   // }
 
   found = checkViolationInSentence(filtered);

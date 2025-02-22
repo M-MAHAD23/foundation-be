@@ -167,7 +167,7 @@ const easySearch = async (req, res) => {
       hasNextPage: false,
     });
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).send("Internal Server Error");
   }
 };
@@ -244,7 +244,7 @@ const searchBookmarks = async (req, res) => {
       hasNextPage: false,
     });
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).send("Internal Server Error");
   }
 };
@@ -292,7 +292,7 @@ const searchHiddenQuest = async (req, res) => {
       hasNextPage: false,
     });
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).send("Internal Server Error");
   }
 };
@@ -338,7 +338,7 @@ const searchCities = async (req, res) => {
       }))
     );
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -357,7 +357,7 @@ const searchUniversities = async (req, res) => {
       data.map((uni) => ({ id: uni.id, name: uni.name, country: uni.country }))
     );
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -380,7 +380,7 @@ const searchCompanies = async (req, res) => {
       }))
     );
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -401,7 +401,7 @@ const searchJobTitles = async (req, res) => {
       }))
     );
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -423,7 +423,7 @@ const searchHobbies = async (req, res) => {
       }))
     );
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -447,7 +447,7 @@ const searchOrganizations = async (req, res) => {
       }))
     );
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -471,7 +471,7 @@ const searchCertifications = async (req, res) => {
       }))
     );
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -493,7 +493,7 @@ const searchVolunteer = async (req, res) => {
       }))
     );
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -519,7 +519,7 @@ const searchDegreesAndFields = async (req, res) => {
       }))
     );
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };

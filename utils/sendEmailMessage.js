@@ -50,7 +50,7 @@ module.exports.sendEmailMessage = async (email, subject, message, sender) => {
     if (!result) throw new Error("Mail Not Sent");
     return result;
   } catch (error) {
-    console.log(error);
+    // // console.log(error);
     throw error;
   }
 }

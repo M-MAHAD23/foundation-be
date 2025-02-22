@@ -116,7 +116,7 @@ const update = async (req, res) => {
 
     res.status(200).json({ ...decryptUser, token });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while update Ledger: ${error.message}`,
     });
@@ -136,7 +136,7 @@ const updateOnBoarding = async (req, res) => {
 
     res.status(200).json({ message: "Sucess" });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while update Ledger: ${error.message}`,
     });
@@ -153,7 +153,7 @@ const getBadges = async (req, res) => {
 
     res.status(200).json({ userBadges });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while update Ledger: ${error.message}`,
     });
@@ -270,7 +270,7 @@ const addContactBadge = async (req, res) => {
         // Check Email Category
         emailStatus = await eduEmailCheck(req, res, req.body.email);
       }
-      //console.log("🚀 ~ addContactBadge ~ emailStatus:", emailStatus);
+      //// console.log("🚀 ~ addContactBadge ~ emailStatus:", emailStatus);
       if (emailStatus.status !== "OK") throw new Error(emailStatus.message);
     }
 
@@ -283,7 +283,7 @@ const addContactBadge = async (req, res) => {
       const usersWithEmail = await UserModel.find({
         email: req.body.email,
       });
-      //console.log("wamiq", usersWithBadge);
+      //// console.log("wamiq", usersWithBadge);
       if (usersWithBadge.length !== 0 || usersWithEmail.length !== 0)
         throw new Error("Oops! This account is already linked.");
 
@@ -552,7 +552,7 @@ const addBadge = async (req, res) => {
       followings = req.body.data._json.following
         ? req.body.data._json.following
         : 0;
-      console.log(followings, followers);
+      // console.log(followings, followers);
     }
 
     if (req.body.provider === "facebook") {
@@ -658,7 +658,7 @@ const addBadge = async (req, res) => {
 
     res.status(200).json({ message: "Successful" });
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     res.status(500).json({
       message: `An error occurred while addSocialBadge: ${error.message}`,
     });
@@ -811,7 +811,7 @@ const addPersonalBadge = async (req, res) => {
           personal: req.body.personal,
         },
       ];
-      // console.log(updatedUserBadges);
+      // // console.log(updatedUserBadges);
     } else {
       if (User.isPasswordEncryption) {
         if (!req.body.infoc)
@@ -834,10 +834,10 @@ const addPersonalBadge = async (req, res) => {
               personal: encryptedPersonal,
             },
           ];
-          // console.log(updatedUserBadges);
+          // // console.log(updatedUserBadges);
         } else {
           // Handle case where no key is found, if needed
-          console.log("No matching key found in personal object.");
+          // console.log("No matching key found in personal object.");
         }
       } else {
         if (foundKey) {
@@ -853,10 +853,10 @@ const addPersonalBadge = async (req, res) => {
               personal: encryptedPersonal,
             },
           ];
-          // console.log(updatedUserBadges);
+          // // console.log(updatedUserBadges);
         } else {
           // Handle case where no key is found, if needed
-          console.log("No matching key found in personal object.");
+          // console.log("No matching key found in personal object.");
         }
       }
     }
@@ -948,7 +948,7 @@ const removeAWorkEducationBadge = async (req, res) => {
         badge.personal &&
         badge.personal[req.body.type] &&
         badge.personal[req.body.type].some((edu) => {
-          console.log(edu.id, req.body.id);
+          // console.log(edu.id, req.body.id);
           return edu.id === req.body.id;
         })
       );
@@ -1092,7 +1092,7 @@ const removeAWorkEducationBadge = async (req, res) => {
 //         badge.personal &&
 //         badge.personal[req.body.type] &&
 //         badge.personal[req.body.type].some((edu) => {
-//           //console.log(edu.id, req.body.id);
+//           //// console.log(edu.id, req.body.id);
 //           return edu.id === req.body.id;
 //         })
 //       );
@@ -1193,7 +1193,7 @@ const removeAWorkEducationBadge = async (req, res) => {
 //         badge.personal &&
 //         badge.personal[req.body.type] &&
 //         badge.personal[req.body.type].some((edu) => {
-//           //console.log(edu.id, req.body.id);
+//           //// console.log(edu.id, req.body.id);
 //           return edu.id === req.body.id;
 //         })
 //       );
@@ -1237,7 +1237,7 @@ const getAWorkAndEducationBadge = async (req, res) => {
         badge.personal &&
         badge.personal[req.body.type] &&
         badge.personal[req.body.type].some((edu) => {
-          // console.log(edu.id, req.body.id);
+          // // console.log(edu.id, req.body.id);
           return edu.id === req.body.id;
         })
       );
@@ -1382,7 +1382,7 @@ const getPersonalBadge = async (req, res) => {
 //         badge.personal &&
 //         badge.personal[req.body.type] &&
 //         badge.personal[req.body.type].some((edu) => {
-//           //console.log(edu.id, req.body.id, "new");
+//           //// console.log(edu.id, req.body.id, "new");
 //           return edu.id === req.body.id;
 //         })
 //       );
@@ -1444,7 +1444,7 @@ const updateWorkAndEducationBadge = async (req, res) => {
         badge.personal &&
         badge.personal[req.body.type] &&
         badge.personal[req.body.type].some((edu) => {
-          // console.log(edu.id, req.body.id, "new");
+          // // console.log(edu.id, req.body.id, "new");
           return edu.id === req.body.id;
         })
       );
@@ -1721,7 +1721,7 @@ const removePersonalBadge = async (req, res) => {
         if (decryptedDoc.identityNumber === identityBadgeIdentityNumber) {
           // Delete the matched document
           await SearchIdentity.findByIdAndDelete(doc._id);
-          console.log(`Identity document deleted from search index.`);
+          // console.log(`Identity document deleted from search index.`);
           break;
         }
       }
@@ -2080,7 +2080,7 @@ const sendVerifyEmail = async ({ email, uuid, type }) => {
     );
 
     // const verificationToken = user.generateVerificationToken();
-    //console.log("verificationToken", verificationToken);
+    //// console.log("verificationToken", verificationToken);
 
     // Step 3 - Email the user a unique verification link
     // const url = `${FRONTEND_URL}/VerifyCode?token=${verificationTokenFull}&badge=true`;
@@ -2094,7 +2094,7 @@ const sendVerifyEmail = async ({ email, uuid, type }) => {
       },
     };
     // Create SES service object
-    //console.log("before sesClient", SES_CONFIG);
+    //// console.log("before sesClient", SES_CONFIG);
 
     const sesClient = new AWS.SES(SES_CONFIG);
 
@@ -2128,14 +2128,14 @@ const sendVerifyEmail = async ({ email, uuid, type }) => {
       const emailRes = await sesClient.sendEmail(params).promise();
       return emailRes;
     } catch (error) {
-      //console.log(error);
+      //// console.log(error);
     }
 
     // return res.status(200).send({
     //   message: `Sent a verification email to ${email}`,
     // });
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     // res.status(500).json({
     //   message: `An error occurred while sendVerifyEmail Auth: ${error.message}`,
     // });
@@ -2199,7 +2199,7 @@ const addContactBadgeAdd = async (req, res) => {
     const usersWithEmail = await UserModel.find({
       email: decodedToken.email,
     });
-    //console.log("wamiq", usersWithBadge);
+    //// console.log("wamiq", usersWithBadge);
     if (usersWithBadge.length !== 0 || usersWithEmail.length !== 0)
       throw new Error("Oops! This account is already linked.");
 
@@ -2603,7 +2603,7 @@ const addPseudoBadge = async (req, res) => {
 
     res.status(200).json({ message: "Successful" });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 
@@ -2637,7 +2637,7 @@ const removePseudoBadge = async (req, res) => {
       data: user,
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 
@@ -2732,7 +2732,7 @@ const addDomainBadge = async (req, res) => {
           : [];
       } else if (!req.files.file1x1 && req.files.file16x9) {
         // Case 2: file1x1 is missing, but file16x9 exists
-        console.log("file1x1 is missing, but file16x9 exists.");
+        // console.log("file1x1 is missing, but file16x9 exists.");
         s3Urls[0] = updatedUserBadges[existingBadgeIndex]?.domain?.s3Urls[0]
           ? updatedUserBadges[existingBadgeIndex]?.domain?.s3Urls[0]
           : "";
@@ -2755,7 +2755,7 @@ const addDomainBadge = async (req, res) => {
         coordinates[0] = JSON.parse(req.body.coordinate16x9);
       } else if (req.files.file1x1 && !req.files.file16x9) {
         // Case 3: file1x1 exists, but file16x9 is missing
-        console.log("file1x1 exists, but file16x9 is missing.");
+        // console.log("file1x1 exists, but file16x9 is missing.");
         if (updatedUserBadges[existingBadgeIndex]?.domain?.s3Urls[0]) {
           MODE === "PROD" &&
             (await deleteFileFromS3(
@@ -2778,7 +2778,7 @@ const addDomainBadge = async (req, res) => {
         coordinates[1] = JSON.parse(req.body.coordinate1x1);
       } else {
         // Case 4: Both file1x1 and file16x9 exist
-        console.log("Both file1x1 and file16x9 exist.");
+        // console.log("Both file1x1 and file16x9 exist.");
         if (
           updatedUserBadges[existingBadgeIndex]?.domain?.s3Urls[0] &&
           updatedUserBadges[existingBadgeIndex]?.domain?.s3Urls[1]
@@ -2843,16 +2843,16 @@ const addDomainBadge = async (req, res) => {
       // req.files.forEach(file => {
       //   fs.unlink(file.path, (err) => {
       //     if (err) {
-      //       console.error(`Error deleting file: ${file.path}`, err);
+      //       // console.error(`Error deleting file: ${file.path}`, err);
       //     } else {
-      //       console.log(`File deleted: ${file.path}`);
+      //       // console.log(`File deleted: ${file.path}`);
       //     }
       //   });
       // });
 
       // Delete the output directory and its contents
       // await fs.promises.rm(outputDir, { recursive: true });
-      // console.log(`Directory deleted: ${outputDir}`);
+      // // console.log(`Directory deleted: ${outputDir}`);
     }
 
     // If the badge already exists and update is true, update it
@@ -2965,7 +2965,7 @@ const addDomainBadge = async (req, res) => {
       domain: user.badges.find((badge) => badge.domain),
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -3060,7 +3060,7 @@ const removeDomainBadge = async (req, res) => {
       data: user,
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 };
 
@@ -3096,7 +3096,7 @@ const location = async (req, res) => {
 
     return res.status(200).json({ message: "Location updated successfully" });
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -3158,7 +3158,7 @@ const linkhubInc = async (req, res) => {
         .json({ message: "Viewing from your own profile." });
     }
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -3214,7 +3214,7 @@ const updateBadgeDataArray = async (req, res) => {
         .json({ message: `No badges found with ${type} to update.` });
     }
   } catch (err) {
-    console.error(err);
+    // console.error(err);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -3232,7 +3232,7 @@ const addPasswordBadgesUpdate = async (req, res) => {
           "No eyk Provided in request body, Request can't be proceeded."
         );
 
-      // console.log("Remove Legacy Encryption!");
+      // // console.log("Remove Legacy Encryption!");
 
       // As Legacy Password is added so we need to Remove it.
       user.badges.forEach((badge) => {
@@ -3341,7 +3341,7 @@ const addPasswordBadgesUpdate = async (req, res) => {
         data: user,
       });
     } else if (!user.isPasswordEncryption) {
-      // console.log("Apply Legacy Encryption!");
+      // // console.log("Apply Legacy Encryption!");
 
       // Treasury Check
       const checkTreasury = await Treasury.findOne();
@@ -3474,7 +3474,7 @@ const addPasswordBadgesUpdate = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error.message);
+    // console.error(error.message);
     res.status(500).json({
       message: `An error occurred while processing your security badge: ${error.message}`,
     });
@@ -3522,7 +3522,7 @@ const verifyIdentity = async (req, res) => {
         .json({ error: "Face match failed. Cannot add badge." });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).json({ error: "Something went wrong." });
   }
 };
@@ -3635,7 +3635,7 @@ const addIdentityBadge = async (req, res) => {
       .status(200)
       .json({ message: "Badge added successfully", data: user });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).json({ error: "Something went wrong." });
   }
 };
@@ -3698,7 +3698,7 @@ const updateIdentityBadge = async (req, res) => {
       .status(200)
       .json({ message: "Badge updated successfully", data: user });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).json({ error: "Something went wrong." });
   }
 };
@@ -3734,7 +3734,7 @@ const removeIdentityBadge = async (req, res) => {
       ) {
         // Delete the matched document
         await SearchIdentity.findByIdAndDelete(doc._id);
-        console.log(`Identity document deleted from search index.`);
+        // console.log(`Identity document deleted from search index.`);
         break;
       }
     }
@@ -3747,7 +3747,7 @@ const removeIdentityBadge = async (req, res) => {
       .status(200)
       .json({ message: "Badge removed successfully", data: user });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).json({ error: "Something went wrong." });
   }
 };
@@ -3789,7 +3789,7 @@ const addProfileBadges = async (req, res) => {
       .status(200)
       .json({ message: "Badges updated successfully", data: null });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: `Internal server error: ${error}` });
   }
 };
@@ -3824,7 +3824,7 @@ const badgeHubClicksTrack = async (req, res) => {
       data: updatedBadge?.badgeHubClicksTrack,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: `Internal server error: ${error}` });
   }
 };
@@ -3836,7 +3836,7 @@ const connectStripe = async (req, res) => {
     const accountLinkURL = `https://connect.stripe.com/oauth/authorize?response_type=code&client_id=${STRIPE_CLIENT_ID}&scope=read_write&redirect_uri=${redirectUri}&state=${uuid}`;
     res.status(200).json({ url: accountLinkURL });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -3970,7 +3970,7 @@ const connectStripeCallback = async (req, res) => {
       res.redirect(`${FRONTEND_URL}/profile/verification-badges?success=false`);
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -3991,7 +3991,7 @@ const removeFinance = async (req, res) => {
       res.status(404).json({ message: "User not found" });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -4012,7 +4012,7 @@ const badgeAddAmount = async (req, res) => {
       res.status(404).json({ message: "User or badge not found" });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ message: error.message });
   }
 };

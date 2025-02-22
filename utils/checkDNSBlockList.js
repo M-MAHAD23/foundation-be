@@ -56,54 +56,54 @@ const dnsblServers = [
   'zombie.dnsbl.sorbs.net'
 ]
 
-let totalResults=dnsblServers.length;
+let totalResults = dnsblServers.length;
 setInterval(() => {
   apiCallCount = 0;
 }, oneDayInMillis);
 
 module.exports.checkDNSBlockList = async (req, res) => {
-    try {
-      const callType = req.params.callType;
-      const useDomain = req.query.domain;
-      let ipAddress;
-    
-      if (!useDomain) {
-        ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress || null;
-        ipAddress=extractIpAddress(ipAddress);
-    
-        if (!ipAddress) {
-          res.status(400).json({ message: 'IP Failed to detect', status: 'ERROR' });
-        }
-      } else ipAddress=useDomain;
+  try {
+    const callType = req.params.callType;
+    const useDomain = req.query.domain;
+    let ipAddress;
 
-      const now = Date.now();
-      const timeSinceLastCall = now - lastApiCallTimestamp;
+    if (!useDomain) {
+      ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress || null;
+      ipAddress = extractIpAddress(ipAddress);
 
-      if (timeSinceLastCall < minApiCallDelay) {
+      if (!ipAddress) {
+        res.status(400).json({ message: 'IP Failed to detect', status: 'ERROR' });
+      }
+    } else ipAddress = useDomain;
+
+    const now = Date.now();
+    const timeSinceLastCall = now - lastApiCallTimestamp;
+
+    if (timeSinceLastCall < minApiCallDelay) {
       const delay = minApiCallDelay - timeSinceLastCall;
-        await new Promise(resolve => setTimeout(resolve, delay));
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+
+    if (apiCallCount >= maxApiCallsPerDay) {
+      res.status(429).json({ message: 'API Limit', status: 'ERROR' });
+      return;
+    }
+
+    lastApiCallTimestamp = Date.now();
+    apiCallCount++;
+
+    checkDNSBL(ipAddress, dnsblServers, (err, failureCount) => {
+      if (err) {
+        res.json({ message: err, status: 'ERROR' });
+      } else {
+        res.json({ message: calculatePercentage(totalResults, failureCount), status: 'OK' });
       }
+    });
 
-      if (apiCallCount >= maxApiCallsPerDay) {
-        res.status(429).json({ message: 'API Limit', status: 'ERROR' });
-        return;
-      }
-
-      lastApiCallTimestamp = Date.now();
-      apiCallCount++;
-
-      checkDNSBL(ipAddress, dnsblServers, (err, failureCount) => {
-        if (err) {
-          res.json({ message: err, status: 'ERROR' });
-        } else {
-          res.json({ message: calculatePercentage(totalResults,failureCount), status: 'OK' });
-        }
-      });
-
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: `An error occurred while checkDNSBlockList: ${error.message}` });
-      }
+  } catch (error) {
+    // console.error(error);
+    res.status(500).json({ message: `An error occurred while checkDNSBlockList: ${error.message}` });
+  }
 };
 
 
@@ -154,8 +154,8 @@ function checkDNSBL(ip, dnsblServers, callback) {
 }
 
 function calculatePercentage(totalResults, positiveResults) {
-    const positivePercentage = (positiveResults / totalResults) * 100;
-    return positivePercentage.toFixed(2); // Return percentage rounded to two decimal places
+  const positivePercentage = (positiveResults / totalResults) * 100;
+  return positivePercentage.toFixed(2); // Return percentage rounded to two decimal places
 }
 
 function isIpAddress(input) {

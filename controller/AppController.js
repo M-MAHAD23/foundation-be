@@ -151,7 +151,7 @@ const spotLight = async (req, res) => {
         .json({ message: "Spotlight removed successfully" });
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -197,7 +197,7 @@ const detectDocument = async (req, res) => {
       return res.status(403).json({ message: "Invalid Document" });
     }
   } catch (error) {
-    console.error('Error detecting labels for back image:', error);
+    // console.error('Error detecting labels for back image:', error);
     return res.status(500).json({ message: "Internal Server Error", error });
   }
 };

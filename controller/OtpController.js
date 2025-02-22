@@ -61,7 +61,7 @@ const sendOtp = async (req, res) => {
 
     res.status(200).json({ message: "OTP sent successfully", data: savedOtp });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while sendOtp: ${error.message}`,
     });
@@ -84,17 +84,17 @@ const verifyOtp = async (req, res) => {
         }
       );
       user.role = "user",
-      user.isGuestMode = false,
-      user.ip = "",
-      user.requiredAction = true,
-      user.gmailVerified = true,
-      user.verification = true,
-      user.isLegacyEmailContactVerified = true,
-      user.badges.unshift({
-        accountId: user.email,
-        accountName: "Email",
-        isVerified: true,
-      });
+        user.isGuestMode = false,
+        user.ip = "",
+        user.requiredAction = true,
+        user.gmailVerified = true,
+        user.verification = true,
+        user.isLegacyEmailContactVerified = true,
+        user.badges.unshift({
+          accountId: user.email,
+          accountName: "Email",
+          isVerified: true,
+        });
       await user.save();
 
       const txID = crypto.randomBytes(11).toString("hex");
@@ -157,7 +157,7 @@ const verifyOtp = async (req, res) => {
       res.status(200).json({ message: "OTP verification successful" });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while verifyOtp: ${error.message}`,
     });
@@ -201,7 +201,7 @@ const resendOtp = async (req, res) => {
       .status(200)
       .json({ message: "OTP resent successfully", data: savedOtp });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while resendOtp: ${error.message}`,
     });
@@ -248,7 +248,7 @@ const sendEmailOtp = async (req, res) => {
 
     res.status(200).json({ message: "OTP sent successfully", data: savedOtp });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while sendOtp: ${error.message}`,
     });
@@ -286,7 +286,7 @@ const verifyEmailOtp = async (req, res) => {
     res.cookie("jwt", token, cookieConfiguration());
     res.status(200).json(user);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while verifyOtp: ${error.message}`,
     });
@@ -343,7 +343,7 @@ const resendEmailOtp = async (req, res) => {
       .status(200)
       .json({ message: "OTP resent successfully", data: savedOtp });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while resendOtp: ${error.message}`,
     });

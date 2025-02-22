@@ -7,6 +7,6 @@ module.exports.createLedger = async (obj) => {
     if (!savedLedger) throw new Error("Ledger Not Created Successfully!");
     return savedLedger;
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };

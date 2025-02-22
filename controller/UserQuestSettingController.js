@@ -80,7 +80,7 @@ const createOrUpdate = async (req, res) => {
         .json({ message: "UserQuestSetting Updated Successfully!" });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while createOrUpdate UserQuestSetting: ${error.message}`,
     });
@@ -175,7 +175,7 @@ const link = async (req, res) => {
       data: savedOrUpdatedUserQuestSetting,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while create UserQuestSetting link: ${error.message}`,
     });
@@ -208,7 +208,7 @@ const shareArticles = async (req, res) => {
       data: data,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while generating article SEO file: ${error.message}`,
     });
@@ -271,7 +271,7 @@ async function linkUserList(payload) {
       data: savedOrUpdatedUserQuestSetting,
     };
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while create UserQuestSetting link: ${error.message}`,
     });
@@ -390,7 +390,7 @@ const customLink = async (req, res) => {
       data: savedOrUpdatedUserQuestSetting,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while create UserQuestSetting link: ${error.message}`,
     });
@@ -418,7 +418,7 @@ const impression = async (req, res) => {
       data: updatedUserQuestSetting,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while updating UserQuestSetting link: ${error.message}`,
     });
@@ -462,15 +462,15 @@ const status = async (req, res) => {
     }
     return res.status(200).json({
       message: `Share link ${status === "Disable"
-          ? "Disabled"
-          : status === "Delete"
-            ? "Deleted"
-            : "Enabled"
+        ? "Disabled"
+        : status === "Delete"
+          ? "Deleted"
+          : "Enabled"
         } Successfully`,
       data: updatedUserQuestSetting,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: `An error occurred while changing link status: ${error.message}`,
     });
@@ -1022,7 +1022,7 @@ const createFeedback = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while Feedback UserQuestSetting: ${error.message}`,
     });
@@ -1046,7 +1046,7 @@ const updateFeedback = async (req, res) => {
       data: updatedUserQuestSetting,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while Feedback UserQuestSetting: ${error.message}`,
     });
@@ -1105,7 +1105,7 @@ const undoFeedback = async (req, res) => {
       throw new Error("This type of feedback cannot be reverted.");
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while Feedback UserQuestSetting: ${error.message}`,
     });
@@ -1135,7 +1135,7 @@ const create = async (req, res) => {
     // if (payload.hidden === true) {
     //   updateData.$set.hiddenTime = new Date(); // Set to the current timestamp
     // }
-    // //console.log(updateData);
+    // //// console.log(updateData);
     // let userQuestSettingSaved;
     // userQuestSettingSaved = await UserQuestSetting.findOneAndUpdate(
     //   // Query criteria
@@ -1275,7 +1275,7 @@ const create = async (req, res) => {
       data: userQuestSettingSaved,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while create UserQuestSetting: ${error.message}`,
     });
@@ -1406,7 +1406,7 @@ const update = async (req, res) => {
       data: updatedUserQuestSetting,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({
       message: ` An error occurred while update UserQuestSetting: ${error.message}`,
     });
@@ -1458,7 +1458,7 @@ const getAllHiddenQuests = async (req, res) => {
       // uuid: req.cookies.uuid,
       uuid: req.body.uuid,
     });
-    // //console.log(Questions);
+    // //// console.log(Questions);
     res.status(200).json(Questions);
   } catch (err) {
     res.status(500).send(err);
@@ -1473,7 +1473,7 @@ const hiddenPostCount = async (uuid, hidden) => {
       { $inc: { yourHiddenPostCounter: hidden ? 1 : -1 } }
     );
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };
 
@@ -1492,7 +1492,7 @@ const ledgerEntryPostLinkCreated = async (uuid) => {
       // txDescription : "User creates a new account"
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };
 
@@ -1542,7 +1542,7 @@ const ledgerDeductionPostLinkCustomized = async (uuid, userQuestSetting_id) => {
       USER_QUEST_SETTING_LINK_CUSTOMIZATION_DEDUCTION_AMOUNT;
     await userSpent.save();
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };
 
@@ -1572,7 +1572,7 @@ const ledgerEntryAdded = async (uuid, questOwnerUuid) => {
       // txDescription : "User creates a new account"
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };
 
@@ -1602,7 +1602,7 @@ const ledgerEntryRemoved = async (uuid, questOwnerUuid) => {
       // txDescription : "User creates a new account"
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 };
 
@@ -1613,7 +1613,7 @@ const ledgerEntryRemoved = async (uuid, questOwnerUuid) => {
 //       data: getTreasury?.amount?.toString(),
 //     });
 //   } catch (error) {
-//     console.error(error);
+//     // console.error(error);
 //     res.status(500).json({
 //       message: ` An error occurred while get Treasury: ${error.message}`,
 //     });
@@ -1622,7 +1622,7 @@ const ledgerEntryRemoved = async (uuid, questOwnerUuid) => {
 
 const sharedLinkDynamicImage = async (req, res) => {
   try {
-    //console.log("Req body", req.body);
+    //// console.log("Req body", req.body);
     const { questStartData, link } = req.body;
 
     // Generate a image name for the image file
@@ -1644,7 +1644,7 @@ const sharedLinkDynamicImage = async (req, res) => {
       puppeteerArgs: puppeteerOptions,
     })
       .then(async () => {
-        //console.log("The image was created successfully!");
+        //// console.log("The image was created successfully!");
 
         // Read the image file from the backend directory
         const filePath = `./assets/uploads/images/${imgName}`;
@@ -1662,20 +1662,20 @@ const sharedLinkDynamicImage = async (req, res) => {
 
         if (!s3UploadData) throw new Error("File not uploaded");
 
-        //console.log("s3UploadData", s3UploadData);
+        //// console.log("s3UploadData", s3UploadData);
 
         const { imageName, s3Url } = s3UploadData;
 
         // Delete the file from the backend directory after uploading to S3
         fs.unlink(filePath, (err) => {
           if (err) {
-            console.error("Error deleting file:", err);
+            // console.error("Error deleting file:", err);
             return;
           }
-          //console.log("File deleted successfully");
+          //// console.log("File deleted successfully");
         });
 
-        //console.log(imageName);
+        //// console.log(imageName);
 
         const userQuestSettingUpdate = await UserQuestSetting.findOneAndUpdate(
           { link: req.body.link },
@@ -1694,13 +1694,13 @@ const sharedLinkDynamicImage = async (req, res) => {
         });
       })
       .catch((error) => {
-        console.error("Error generating image:", error);
+        // console.error("Error generating image:", error);
         return res.status(500).json({
           message: `An error occurred while generating image: ${error.message}`,
         });
       });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(500).json({
       message: `An error occurred on shaedLinkDynamicImage: ${error.message}`,
     });
@@ -1723,7 +1723,7 @@ async function sharedLinkDynamicImageUserList(link, questStartData) {
       puppeteerArgs: puppeteerOptions,
     })
       .then(async () => {
-        //console.log("The image was created successfully!");
+        //// console.log("The image was created successfully!");
 
         // Read the image file from the backend directory
         const filePath = `./assets/uploads/images/${imgName}`;
@@ -1741,20 +1741,20 @@ async function sharedLinkDynamicImageUserList(link, questStartData) {
 
         if (!s3UploadData) throw new Error("File not uploaded");
 
-        //console.log("s3UploadData", s3UploadData);
+        //// console.log("s3UploadData", s3UploadData);
 
         const { imageName, s3Url } = s3UploadData;
 
         // Delete the file from the backend directory after uploading to S3
         fs.unlink(filePath, (err) => {
           if (err) {
-            console.error("Error deleting file:", err);
+            // console.error("Error deleting file:", err);
             return;
           }
-          //console.log("File deleted successfully");
+          //// console.log("File deleted successfully");
         });
 
-        //console.log(imageName);
+        //// console.log(imageName);
 
         const userQuestSettingUpdate = await UserQuestSetting.findOneAndUpdate(
           { link: link },
@@ -1773,13 +1773,13 @@ async function sharedLinkDynamicImageUserList(link, questStartData) {
         };
       })
       .catch((error) => {
-        console.error("Error generating image:", error);
+        // console.error("Error generating image:", error);
         throw new Error({
           message: `An error occurred while generating image: ${error.message}`,
         });
       });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return {
       message: `An error occurred on shaedLinkDynamicImage: ${error.message}`,
     };
